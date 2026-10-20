@@ -1,0 +1,51 @@
+# ============================================
+#  通用 .gitignore — Galgame 代码学习
+# ============================================
+
+# ---- 操作系统 ----
+Thumbs.db
+desktop.ini
+.DS_Store
+$RECYCLE.BIN/
+
+# ---- 编辑器 / IDE ----
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# ---- Python ----
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+
+# ---- Ren'Py（Galgame 引擎）----
+game/cache/
+game/saves/
+log.txt
+errors.txt
+traceback.txt
+*.rpyc
+*.rpymc
+*.rpyb
+
+# ---- Node.js ----
+node_modules/
+dist/
+build/
+
+# ---- 密钥 / 本地配置（千万别提交）----
+.env
+.env.*
+*.key
+*.pem
+secrets.*
+
+# ---- 大文件提醒 ----
+# GitHub 单文件上限 100MB，超过会被拒收。
+# 游戏素材（视频/语音/高清图）请走 Git LFS：
+#   git lfs track "*.psd" "*.wav" "*.mp4"
