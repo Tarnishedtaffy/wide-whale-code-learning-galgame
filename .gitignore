@@ -37,6 +37,12 @@ traceback.txt
 node_modules/
 dist/
 build/
+.gradle/
+local.properties
+*.apk
+*.aab
+*.jks
+*.keystore
 
 # ---- 密钥 / 本地配置（千万别提交）----
 .env

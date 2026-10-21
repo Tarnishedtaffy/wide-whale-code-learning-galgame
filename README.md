@@ -1,5 +1,9 @@
 # wide whale · code learning Galgame
 
+> **本分支新增 Whale Studio 移动 IDE 前端。** 打开 [`ide.html`](ide.html)，或使用 [`docs/ide-preview.html`](docs/ide-preview.html) 查看手机视口。支持左右滑动的文件 / 编辑器与终端 / AI 助手与知识卡片三个工作区；详见 [功能与运行说明](docs/mobile-ide.md)。根入口现跳转至 IDE，原有 `mobile.html` 学习页面保留。下文为原学习页面说明。
+
+> **Android 离线安装版：** [构建与安装说明](docs/android.md)。运行 `scripts/build_android.ps1` 生成可侧载的签名预览 APK；离线前端、浏览器分享包与 APK 使用同一份界面代码。AI 与终端仍为演示功能。
+
 > 给**第一次写代码就卡住的大一新生**，做一个会陪着的编程入门网页。
 > 卡住了有人讲，答对了才涨好感度 —— 把"陪伴"绑在"学会"上，而不是绑在"聊得久"上。
 

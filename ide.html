@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#101416">
+<meta name="description" content="Whale Studio，装进口袋的移动编程工作台。"><title>Whale Studio · 口袋里的创作空间</title><link rel="stylesheet" href="ide.css">
+</head>
+<body><div class="app">
+<main>
+<div class="deck" id="deck" aria-label="左右滑动切换工作区">
+<section class="panel files-panel" id="files" aria-labelledby="files-title">
+<header class="panel-heading"><div><span class="section-index">01</span><h2 id="files-title">文件</h2></div><div><span class="panel-caption">EXPLORER</span><button class="icon-button" id="help-button" aria-label="使用说明">?</button></div></header>
+<div class="file-tools"><label class="search-field"><span>⌕</span><input id="file-search" placeholder="搜索文件…" aria-label="搜索文件"><kbd>⌕</kbd></label><button class="icon-button bordered" id="new-file" aria-label="新建文件">+</button></div>
+<div class="tree-heading"><button id="folder-toggle" aria-expanded="true"><span id="folder-chevron">⌄</span><span class="folder-icon">▱</span> hello-whale</button><span id="file-count">4</span></div><div class="file-list" id="file-list"></div><div class="file-empty" id="file-empty" hidden>没有找到匹配的文件</div><div class="files-spacer"></div>
+<div class="workspace-note"><span class="note-orbit">◌</span><div><strong>小小工作区，大大可能性。</strong><p>文件自动保存在当前浏览器中，<br>下次回来，接着你的灵感继续。</p></div></div>
+<footer class="files-footer"><span><i></i><span id="storage-status">已保存在此设备</span></span><button id="download-button">↓ 导出文件</button></footer></section>
+<section class="panel editor-panel" id="editor" aria-labelledby="editor-title">
+<header class="panel-heading"><div><span class="section-index">02</span><h2 id="editor-title">编辑器</h2></div><span class="panel-caption">MAKE SOMETHING</span><button class="icon-button" id="save-button" aria-label="保存文件">↓</button></header>
+<div class="editor-tabs" id="editor-tabs"></div><div class="breadcrumbs"><span>hello-whale</span><span>›</span><span id="breadcrumb-file">main.py</span><span class="saved-label" id="saved-label"><i></i> 已保存</span></div>
+<div class="code-area" id="code-area"><div class="line-numbers" id="line-numbers" aria-hidden="true"></div><div class="code-content"><pre id="code-highlight" aria-hidden="true"></pre><textarea id="code-input" aria-label="代码编辑器" spellcheck="false" autocapitalize="off" autocomplete="off" autocorrect="off" wrap="off"></textarea></div></div>
+<div class="editor-status"><span><i></i><span id="language-label">Python</span></span><span id="cursor-position">行 1，列 1</span><span>UTF-8 <b>·</b> 4 空格</span></div>
+<section class="terminal" aria-label="演示终端"><header class="terminal-heading"><div><span class="terminal-mark">›_</span><strong>终端</strong><span class="small-tag">前端演示</span></div><div><span class="terminal-session">Python 3</span><button class="icon-button terminal-run" id="run-button" aria-label="运行代码" title="运行代码 · Ctrl / ⌘ + Enter">▶</button><button class="icon-button" id="clear-terminal" aria-label="清空终端" title="清空终端">⌫</button><button class="icon-button" id="toggle-terminal" aria-label="折叠终端" aria-expanded="true">⌄</button></div></header><div class="terminal-body" id="terminal-body"><div id="terminal-output" role="log" aria-live="polite"><p class="muted">Whale Studio · 本地演示环境</p><p class="muted">输入 help 查看命令，或点击 ▶ 运行代码。</p><p><span class="terminal-success">✓</span> 工作区已就绪，开始你的第一次探索吧。</p></div><form class="terminal-input" id="terminal-form"><span>❯</span><input id="terminal-command" aria-label="终端命令" autocomplete="off" spellcheck="false" placeholder="输入命令…"></form></div></section></section>
+<section class="panel assistant-panel" id="assistant" aria-labelledby="assistant-title">
+<div class="assistant-content" id="assistant-content">
+<header class="panel-heading"><div><span class="section-index">03</span><h2 id="assistant-title">灵感搭子</h2></div><span class="assistant-star">✳</span></header>
+<div class="chat-view" id="chat-view"><div class="chat-messages" id="chat-messages" role="log" aria-live="polite"><div class="assistant-intro"><div class="assistant-avatar">✳</div><span>WHALE COMPANION <i></i></span><h3>你负责好奇，<br>我陪你探索。</h3><p>从第一行代码，到第一个「原来如此」。<br>卡住也没关系，我们慢慢来。</p></div><div class="assistant-message"><span class="message-label">whale <span>· 演示助手</span></span><p>嗨，欢迎来到你的工作台 👋<br>我看到了 <code>main.py</code>，今天从一个简单的问候开始怎么样？</p></div></div><div class="suggestions"><button data-question="解释这段代码">解释这段代码 <span>↗</span></button><button data-question="给我一个小挑战">给我一个小挑战 <span>↗</span></button></div><form class="chat-composer" id="chat-form"><label class="context-label" for="chat-input"><span>⌘</span><span id="chat-context">main.py</span><span class="context-dot">· 当前文件</span></label><div><textarea id="chat-input" rows="2" placeholder="遇到什么问题了吗？" aria-label="向演示助手提问"></textarea><button type="submit" aria-label="发送问题">↑</button></div></form><p class="ai-disclaimer">本地演示回复 · 尚未连接 AI 服务</p></div>
+<footer class="assistant-footer"><span class="sparkle">✧</span> 每一位高手，都写过第一行 Hello World。</footer></div>
+<button class="cards-peek" id="cards-peek" aria-label="展开知识卡片" aria-controls="cards-drawer" aria-expanded="false" title="知识卡片 · 点击或向左划展开"><span class="fan-card fan-third" aria-hidden="true"><span>03<br>♧</span></span><span class="fan-card fan-second" aria-hidden="true"><span>02<br>♧</span></span><span class="fan-card fan-first" aria-hidden="true"><span>01<br>✧</span><b>✧</b></span><span class="fan-label" aria-hidden="true">知识卡片</span></button>
+<button class="cards-backdrop" id="cards-backdrop" aria-label="收起知识卡片" tabindex="-1" hidden></button>
+<section class="cards-drawer" id="cards-drawer" role="dialog" aria-modal="true" aria-labelledby="cards-title" aria-hidden="true" inert>
+<h2 id="cards-title" class="sr-only">知识卡片</h2><span id="card-position" class="sr-only" aria-live="polite"></span>
+<div class="cards-view" id="cards-view"><div class="flashcard-stack" id="knowledge-cards" role="group" aria-label="知识卡牌"><button class="card-close" id="close-cards" aria-label="关闭知识卡片" title="关闭知识卡片">×</button></div></div>
+</section></section>
+</div>
+</main><nav class="mobile-nav" aria-label="工作区导航"><button data-page="0" aria-label="文件管理器"><span>▱</span>文件</button><button data-page="1" class="active" aria-current="page"><span>⌘</span>编辑器</button><button data-page="2"><span>✳</span>助手</button></nav>
+<div class="toast" id="toast" role="status"></div>
+<dialog id="file-dialog"><form id="new-file-form"><span class="eyebrow">SOMETHING NEW</span><h2>新建一个文件</h2><p>为你的下一个灵感起个名字。</p><label for="new-file-name">文件名</label><input id="new-file-name" placeholder="例如：practice.py" required maxlength="64" autocomplete="off"><p class="dialog-error" id="file-error" role="alert"></p><div class="dialog-actions"><button type="button" id="cancel-new">取消</button><button class="primary" type="submit">创建文件 ↗</button></div></form></dialog>
+<dialog id="help-dialog"><span class="eyebrow">WELCOME ABOARD</span><h2>口袋里的创作空间。</h2><p>在手机上左右滑动三张工作卡，或点击底部导航。桌面上可同时使用三个面板。</p><p>文件支持新建、搜索、编辑、浏览器本地保存和导出。按 Ctrl / ⌘ + S 保存，Ctrl / ⌘ + Enter 运行演示。</p><p>终端提供 help、ls、cat、clear 和 python 命令。Python 运行只演示字符串、数字变量与 print，不是完整解释器；AI 使用本地预设回复。</p><p>原有学习页面仍可从 <a href="mobile.html">这里打开 ↗</a>。</p><button class="primary" id="close-help">开始创作 →</button></dialog>
+</div><script src="ide.js"></script></body></html>
