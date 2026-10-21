@@ -1,0 +1,29 @@
+plugins { id 'com.android.application' }
+
+android {
+    namespace 'io.github.whalestudio.preview'
+    compileSdk 35
+    defaultConfig {
+        applicationId 'io.github.whalestudio.preview'
+        minSdk 26
+        targetSdk 35
+        versionCode 1
+        versionName '0.1.0-preview'
+        testInstrumentationRunner 'io.github.whalestudio.preview.SmokeInstrumentation'
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+    buildTypes {
+        debug { debuggable false }
+    }
+}
+
+// Keep APK content in sync with the portable web build. No private browser data.
+def prepareWebAssets = tasks.register('prepareWebAssets', Copy) {
+    from('../../dist/portable/Whale-Studio.html') { rename { 'index.html' } }
+    into(layout.buildDirectory.dir('generated/webAssets'))
+}
+android.sourceSets.main.assets.srcDir(layout.buildDirectory.dir('generated/webAssets'))
+tasks.named('preBuild').configure { dependsOn(prepareWebAssets) }
