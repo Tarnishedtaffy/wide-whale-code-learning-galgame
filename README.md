@@ -194,6 +194,39 @@ py -m http.server 8767 --bind 127.0.0.1
 
 ---
 
+## Study Loop 模型部署与回归测试
+
+源码双击打开时仍使用本地预设回答。`deploy/new-api/start.sh` 生成的站点和
+`deploy/local-demo-proxy.mjs` 托管的首页会自动启用同源模型代理。
+
+公网部署使用 `deploy/new-api/`：
+
+1. 将 `.env.example` 复制为 `.env`，填写域名、邮箱、`SESSION_SECRET` 和 `SITE_USER`。
+2. 运行 `docker run --rm -it caddy:2-alpine caddy hash-password`，按提示输入站点登录密码；
+   将输出哈希用**单引号**填入 `SITE_PASSWORD_HASH`，避免 `$` 被展开。
+3. 首次部署先运行 `docker compose up -d new-api`，通过 SSH 隧道访问本机 3000 端口，
+   完成初始化并创建专用令牌：仅允许 `mnk-chat`，设置有限额度，不启用无限额度。
+4. 填入 `NEWAPI_TOKEN`，运行 `bash start.sh`。脚本会先校验 Caddy 配置再启动。
+5. 打开 HTTPS 站点，用站点账号和密码登录。模型令牌不会发给浏览器。
+6. 运行 `bash smoke.sh`，输入站点密码，验证匿名拒绝、预检、管理路径封禁和真实模型调用。
+   最后一步会消耗少量模型额度。
+
+现有部署升级也必须补充 `SITE_USER` / `SITE_PASSWORD_HASH`。此方案使用共享站点账号，
+不是多用户权限系统；没有按用户速率限制，仍需配置模型额度并妥善管理站点密码。
+本机演示代理仅用于可信本机环境，默认监听 `127.0.0.1`，不要直接暴露到公网。
+直连演示包仍含可还原的密钥，只能私下使用，不可公开发布。
+
+回归测试不需要 npm 安装，也不调用真实模型：
+
+```bash
+node --test tests/audit-regressions.test.mjs
+# 已安装 Caddy 时，额外运行真实 Caddy 的隔离路由/鉴权测试：
+CADDY_BIN=/path/to/caddy node --test tests/audit-regressions.test.mjs
+```
+
+PowerShell 可先设置 `$env:CADDY_BIN = 'C:\path\to\caddy.exe'`，再执行同一条 Node 命令。
+未设置 `CADDY_BIN` 时会明确跳过 Caddy 集成测试，其余测试照常执行。
+
 ## 怎么改内容
 
 全部内容集中在 `<script>` 开头的三个数组里，**改这里不用碰任何逻辑**：

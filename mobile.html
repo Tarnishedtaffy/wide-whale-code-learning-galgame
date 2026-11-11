@@ -175,7 +175,8 @@ body{
 /* ---------- 屏 2：陪练 ---------- */
 /* min-height 用 dvh 而不是 100%：百分比在高度为 auto 的父元素里会被忽略 */
 .learn{display:flex; flex-direction:column; min-height:calc(100dvh - var(--nav-h) - 36px); gap:10px}
-.bond{display:flex; align-items:center; gap:10px; font-size:12px; color:var(--ink-2)}
+.bond{position:sticky; top:0; z-index:10; flex-shrink:0; padding:8px 0;
+  background:var(--sky-1); display:flex; align-items:center; gap:10px; font-size:12px; color:var(--ink-2)}
 .bond-track{flex:1; height:8px; border-radius:999px; background:rgba(255,255,255,.9); overflow:hidden}
 .bond-fill{display:block; height:100%; width:0; border-radius:999px;
   background:linear-gradient(90deg,#7FC4FF,var(--blue-deep)); transition:width .45s ease}
@@ -472,6 +473,7 @@ const CHAIN_BONUS = 0.1;       // 连对三道：额外 +10% 本题分
 const CHAIN_PENALTY = 0.2;     // 连错两道：扣当前好感度的 20%
 
 const L = { bond: 0, k: 0, qi: 0, right: 0, wrong: 0, busy: false };
+let endScoreTimer = null, endMoreTimer = null;
 
 function setBond(v){
   L.bond = Math.max(0, Math.min(100, Math.round(v)));
@@ -483,6 +485,10 @@ function setBond(v){
 let moodTimer = null;
 function mood(m, hold){
   const fish = $("#fishLearn");
+  if(fish.dataset.mood === m && m !== "idle"){
+    fish.dataset.mood = "idle";
+    void fish.offsetWidth; // Restart CSS feedback for consecutive equal moods.
+  }
   fish.dataset.mood = m;
   clearTimeout(moodTimer);
   if(!hold) moodTimer = setTimeout(() => { fish.dataset.mood = "idle"; }, 2200);
@@ -504,6 +510,9 @@ function actions(list){
 }
 
 function startLearn(){
+  clearTimeout(endScoreTimer);
+  clearTimeout(endMoreTimer);
+  $("#endMore").hidden = true;
   L.bond = 0; L.k = 0; L.qi = 0; L.right = 0; L.wrong = 0; L.busy = false;
   setBond(0);
   mood("idle");
@@ -545,8 +554,8 @@ function pick(i){
     let gain = BOND_STEP;
     if(L.right >= 3){
       gain += BOND_STEP * CHAIN_BONUS;   // 连对三道：额外 +2%
-      mood("happy");
     }
+    mood("happy");
     setBond(L.bond + gain);
     say("答对了。" + q.why);
   } else {
@@ -579,14 +588,17 @@ function finish(){
   // 好感度 >90 金色、<30 红色、其他白色
   $("#endBond").className = "end-bond " + (L.bond > 90 ? "gold" : L.bond < 30 ? "red" : "");
 
-  // 动画播完（约 1.4 秒）再显示记录，再过 3 秒给「点击继续学习」
+  // 计分动画与继续入口分别从完成标题出现时计时。
+  clearTimeout(endScoreTimer);
+  clearTimeout(endMoreTimer);
+  $("#endMore").hidden = true;
   $("#endBond").style.visibility = "hidden";
   $("#endSub").style.visibility = "hidden";
-  setTimeout(() => {
+  endScoreTimer = setTimeout(() => {
     $("#endBond").style.visibility = "visible";
     $("#endSub").style.visibility = "visible";
-    setTimeout(() => { $("#endMore").hidden = false; }, 3000);
   }, 1400);
+  endMoreTimer = setTimeout(() => { $("#endMore").hidden = false; }, 3000);
 }
 
 $("#endMore").addEventListener("click", () => {

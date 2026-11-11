@@ -2,43 +2,87 @@
 	email {$ACME_EMAIL}
 }
 
+(site_auth) {
+	basic_auth {
+		{$SITE_USER} {$SITE_PASSWORD_HASH}
+	}
+}
+
 {$DOMAIN} {
 	encode zstd gzip
-
-	# ---------- CORS（只放行你的站点） ----------
-	@preflight {
-		method OPTIONS
-		path /v1/*
-	}
-	respond @preflight 204 {
-		header Access-Control-Allow-Origin "{$ALLOW_ORIGIN}"
-		header Access-Control-Allow-Methods "POST, GET, OPTIONS"
-		header Access-Control-Allow-Headers "Content-Type, Authorization"
-		header Access-Control-Max-Age "86400"
-	}
 	header {
 		Access-Control-Allow-Origin "{$ALLOW_ORIGIN}"
+		Access-Control-Allow-Credentials "true"
 		-Server
 	}
 
-	# ---------- AI 接口：Caddy 注入主令牌，前端不持有密钥 ----------
-	@ai path /v1/*
-	reverse_proxy @ai 127.0.0.1:3000 {
-		header_up Authorization "Bearer {$NEWAPI_TOKEN}"
-		header_up Host {upstream_hostport}
+	@preflight {
+		method OPTIONS
+		path /v1/*
+		header Origin {$ALLOW_ORIGIN}
 	}
-
-	# ---------- 管理面板：默认对外 403，只能通过 SSH 隧道访问 ----------
-	@admin {
-		path /console* /panel* /api/*
-		not path /api/status
+	@options {
+		method OPTIONS
+		path /v1/*
 	}
-	respond @admin "forbidden: use ssh -L 3000:127.0.0.1:3000" 403
+	@foreign_origin {
+		path /v1/*
+		header Origin *
+		not header Origin {$ALLOW_ORIGIN}
+	}
+	@admin path /console* /panel* /api/*
+	@chat {
+		method POST
+		path /v1/chat/completions
+	}
+	@models {
+		method GET
+		path /v1/models
+	}
+	@other_api path /v1 /v1/*
 
-	# ---------- 静态站点（可选）：把 index.html 放进 ./site ----------
-	handle {
-		root * /srv
-		file_server
-		try_files {path} /index.html
+	# Explicit order keeps preflight, denied paths and API out of the SPA fallback.
+	route {
+		handle @preflight {
+			header {
+				Access-Control-Allow-Methods "POST, GET, OPTIONS"
+				Access-Control-Allow-Headers "Content-Type, Authorization"
+				Access-Control-Max-Age "86400"
+			}
+			respond 204
+		}
+		handle @options {
+			respond "forbidden origin" 403
+		}
+		handle @foreign_origin {
+			respond "forbidden origin" 403
+		}
+		handle @admin {
+			respond "forbidden: use ssh -L 3000:127.0.0.1:3000" 403
+		}
+		handle @chat {
+			import site_auth
+			request_body {
+				max_size 64KB
+			}
+			reverse_proxy new-api:3000 {
+				header_up Authorization "Bearer {$NEWAPI_TOKEN}"
+			}
+		}
+		handle @models {
+			import site_auth
+			reverse_proxy new-api:3000 {
+				header_up Authorization "Bearer {$NEWAPI_TOKEN}"
+			}
+		}
+		handle @other_api {
+			respond "not found" 404
+		}
+		handle {
+			import site_auth
+			root * /srv
+			try_files {path} /index.html
+			file_server
+		}
 	}
 }

@@ -39,6 +39,8 @@ services:
       ACME_EMAIL: ${ACME_EMAIL}
       ALLOW_ORIGIN: ${ALLOW_ORIGIN}
       NEWAPI_TOKEN: ${NEWAPI_TOKEN}
+      SITE_USER: ${SITE_USER:?Set SITE_USER}
+      SITE_PASSWORD_HASH: ${SITE_PASSWORD_HASH:?Set SITE_PASSWORD_HASH}
     volumes:
       - ./Caddyfile:/etc/caddy/Caddyfile:ro
       - ./site:/srv:ro

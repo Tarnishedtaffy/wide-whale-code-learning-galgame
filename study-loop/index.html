@@ -3261,12 +3261,18 @@ function save(){
     _lastSavedJSON = payload;
     return true;
   }catch(e){
-    /* 配额吃紧：先裁剪最容易膨胀的两块（聊天长文本和错题快照）再试一次 */
+    /* 配额吃紧：只压缩聊天，保留当前会话与最近更新的会话，不动学习进度。 */
     try{
       var slim = JSON.parse(payload);
       if(slim.data){
         if(Array.isArray(slim.data.chatSessions)){
-          slim.data.chatSessions = slim.data.chatSessions.slice(-8).map(function(ses){
+          slim.data.chatSessions = slim.data.chatSessions.filter(function(ses){
+            return ses && typeof ses === "object";
+          }).sort(function(a, b){
+            if(a.id === slim.data.chatCurrent) return -1;
+            if(b.id === slim.data.chatCurrent) return 1;
+            return (Number(b.ts) || 0) - (Number(a.ts) || 0);
+          }).slice(0, 8).map(function(ses){
             if(!ses || !Array.isArray(ses.msgs)) return ses;
             return {
               id: ses.id, title: ses.title, at: ses.at,
@@ -3280,7 +3286,7 @@ function save(){
             };
           });
         }
-        if(slim.data.memSearchHist) slim.data.memSearchHist = slim.data.memSearchHist.slice(-20);
+        if(slim.data.memSearchHist) slim.data.memSearchHist = slim.data.memSearchHist.slice(0, 20);
       }
       var slimStr = JSON.stringify(slim);
       localStorage.setItem("mnk_state", slimStr);

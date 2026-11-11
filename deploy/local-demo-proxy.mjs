@@ -16,7 +16,7 @@ import fs from "node:fs";
 import path from "node:path";
 
 const PORT = Number(process.env.PORT || 8787);
-const ROOT = process.env.ROOT || path.resolve(process.cwd(), "study-loop");
+const ROOT = fs.realpathSync(path.resolve(process.env.ROOT || path.join(process.cwd(), "study-loop")));
 const TIMEOUT = 20000;
 
 // 渠道按顺序尝试，先主后备。key 只从环境变量读取，不写入任何文件。
@@ -79,17 +79,42 @@ async function callChannel(ch, body) {
 
 http
   .createServer(async (req, res) => {
-    if (req.url.startsWith("/v1/")) {
+    let urlPath;
+    try {
+      urlPath = decodeURIComponent(req.url.split("?")[0]);
+      if (urlPath.includes("\0")) throw new Error("invalid path");
+    } catch {
+      res.writeHead(400).end("bad path");
+      return;
+    }
+    if (urlPath === "/v1" || urlPath.startsWith("/v1/")) {
+      if (urlPath !== "/v1/chat/completions") {
+        res.writeHead(404).end("not found");
+        return;
+      }
+      if (req.method !== "POST") {
+        res.writeHead(405, { Allow: "POST" }).end("method not allowed");
+        return;
+      }
       const chunks = [];
-      for await (const c of req) chunks.push(c);
       let body;
       try {
+        let size = 0;
+        for await (const c of req) {
+          size += c.length;
+          if (size > 65536) {
+            res.writeHead(413).end("request too large");
+            return;
+          }
+          chunks.push(c);
+        }
         body = JSON.parse(Buffer.concat(chunks).toString("utf8") || "{}");
+        if (!body || typeof body !== "object" || Array.isArray(body)) throw new Error("bad body");
       } catch {
         res.writeHead(400, { "Content-Type": "application/json" }).end('{"error":"bad json"}');
         return;
       }
-      console.log(`[proxy] 收到前端请求，Authorization=${req.headers.authorization || "(无)"}`);
+      console.log("[proxy] 收到前端请求");
 
       let lastErr = null;
       for (const ch of channels) {
@@ -105,24 +130,33 @@ http
           );
           return;
         }
-        console.log(`[proxy] ${ch.name} 失败 status=${r.status} ${r.detail}`);
+        console.log(`[proxy] ${ch.name} 失败 status=${r.status}`);
         lastErr = r;
       }
       res.writeHead(lastErr?.status || 502, { "Content-Type": "application/json" }).end(
-        JSON.stringify({ error: { message: lastErr?.detail || "all channels failed" } })
+        JSON.stringify({ error: { message: "all channels failed" } })
       );
       return;
     }
 
-    const urlPath = decodeURIComponent(req.url.split("?")[0]);
     const file = urlPath === "/" ? "/index.html" : urlPath;
-    const full = path.join(ROOT, file);
-    if (!full.startsWith(ROOT) || !fs.existsSync(full) || fs.statSync(full).isDirectory()) {
+    let full;
+    try {
+      full = fs.realpathSync(path.join(ROOT, file));
+      const relative = path.relative(ROOT, full);
+      if (relative === ".." || relative.startsWith(".." + path.sep) || path.isAbsolute(relative) ||
+          !fs.statSync(full).isFile()) throw new Error("outside root");
+    } catch {
       res.writeHead(404).end("not found");
       return;
     }
+    if (full === path.join(ROOT, "index.html")) {
+      const html = fs.readFileSync(full, "utf8").replace('mode: "local",', 'mode: "proxy",');
+      res.writeHead(200, { "Content-Type": MIME[".html"] }).end(html);
+      return;
+    }
     res.writeHead(200, { "Content-Type": MIME[path.extname(full)] || "application/octet-stream" });
-    fs.createReadStream(full).pipe(res);
+    fs.createReadStream(full).on("error", () => res.destroy()).pipe(res);
   })
   .listen(PORT, process.env.HOST || "127.0.0.1", () => {
     console.log(`演示代理已启动：http://${process.env.HOST || "127.0.0.1"}:${PORT}/`);

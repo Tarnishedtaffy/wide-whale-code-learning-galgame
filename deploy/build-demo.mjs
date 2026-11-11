@@ -52,7 +52,9 @@ const prelude = `
 <script>
 (function(){
   var _0x=["${segs[0]}","${segs[1]}","${segs[2]}","${segs[3]}"],_0x1=[${order.join(",")}],_0x2=${k1}^0,_0x3=${k2}^0;
-  var _0x4=_0x[_0x1[0]]+_0x[_0x1[1]]+_0x[_0x1[2]]+_0x[_0x1[3]];
+  var _parts=[];
+  for(var p=0;p<_0x1.length;p++)_parts[_0x1[p]]=_0x[p];
+  var _0x4=_parts.join("");
   var _0x5=atob(_0x4),_0x6="";
   for(var i=0;i<_0x5.length;i++)_0x6+=String.fromCharCode(_0x5.charCodeAt(i)^_0x3);
   var _0x7=atob(_0x6),_0x8="";
@@ -72,16 +74,16 @@ const prelude = `
 </script>`;
 
 let html = fs.readFileSync(SRC, "utf8");
-const before = html;
+if (!html.includes('mode: "local",')) {
+  console.error('未找到 mode: "local"，页面可能已被改动，已中止。');
+  process.exit(1);
+}
 html = html.replace('mode: "local",', 'mode: "proxy",');
 html = html.split('model: "mnk-chat"').join(`model: ${JSON.stringify(model)}`);
 // 中转侧多为推理型模型，首字延迟常在 5-8s，演示版放宽超时避免误回落
 html = html.replace("timeout: 10000,", "timeout: 25000,");
-if (html === before) {
-  console.error("未找到 mode: \"local\"，页面可能已被改动，已中止。");
-  process.exit(1);
-}
 html = html.replace("</body>", prelude + "\n</body>");
+fs.mkdirSync(path.dirname(OUT), { recursive: true });
 fs.writeFileSync(OUT, html);
 
 console.log(`已生成 ${OUT}`);
