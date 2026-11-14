@@ -10,6 +10,7 @@
     "build": "pnpm --filter @mnk/shared build && pnpm --filter @mnk/app build && pnpm --filter @mnk/ai-proxy build",
     "tauri": "tauri",
     "tauri:dev": "tauri dev",
+    "tauri:exe": "tauri build --no-bundle",
     "tauri:build": "tauri build",
     "android:init": "tauri android init",
     "android:dev": "tauri android dev",
