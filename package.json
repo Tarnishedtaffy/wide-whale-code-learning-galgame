@@ -1,0 +1,27 @@
+{
+  "name": "mnk-study-loop-monorepo",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@11.22.0",
+  "scripts": {
+    "extract": "node scripts/extract-study-loop.mjs",
+    "dev": "pnpm --filter @mnk/app dev",
+    "build": "pnpm --filter @mnk/shared build && pnpm --filter @mnk/app build && pnpm --filter @mnk/ai-proxy build",
+    "tauri": "tauri",
+    "tauri:dev": "tauri dev",
+    "tauri:build": "tauri build",
+    "android:init": "tauri android init",
+    "android:dev": "tauri android dev",
+    "android:build": "tauri android build --apk --debug",
+    "proxy:dev": "pnpm --filter @mnk/ai-proxy dev",
+    "proxy:start": "pnpm --filter @mnk/ai-proxy start",
+    "typecheck": "pnpm --filter @mnk/shared typecheck && pnpm --filter @mnk/app typecheck && pnpm --filter @mnk/ai-proxy typecheck",
+    "test": "pnpm --filter @mnk/app test && pnpm --filter @mnk/ai-proxy test && node --test tests/audit-regressions.test.mjs",
+    "test:rust": "cargo test --manifest-path src-tauri/Cargo.toml"
+  },
+  "devDependencies": {
+    "@tauri-apps/cli": "^2.5.0",
+    "typescript": "^5.8.2"
+  }
+}

@@ -42,6 +42,7 @@ build/
 .env
 .env.*
 !.env.example
+!.env.local.example
 *.key
 *.pem
 secrets.*
@@ -65,3 +66,17 @@ exports/
 
 # Caddy 静态目录（部署时由 start.sh 生成，不进仓库）
 deploy/new-api/site/
+
+# ---- Monorepo / Vite / TypeScript ----
+packages/*/dist/
+*.tsbuildinfo
+.turbo/
+
+# ---- Tauri / Rust / Android ----
+src-tauri/target/
+src-tauri/WixTools/
+src-tauri/gen/schemas/
+src-tauri/gen/android/.gradle/
+src-tauri/gen/android/**/build/
+src-tauri/gen/android/local.properties
+

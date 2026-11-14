@@ -7,6 +7,41 @@
 
 ---
 
+## Tauri v2 多端架构版（Vue 3 + TypeScript + Rust + Node.js）
+
+`study-loop/index.html` 已完整解耦为 **Tauri v2 多端应用（重点适配手机端 Android）**，同时完整保留旧版单文件 HTML 与回归测试。
+
+### 模块分层
+- **`packages/app`（Vue 3 + TypeScript + Pinia + Vite）**：11 个核心视图、7 个抽屉/曲库浮层、3 个弹窗组件，支持 Tauri IPC 与浏览器双通道运行，内置移动端全屏 `100dvh`、刘海安全区与 Android 物理返回栈适配。
+- **`src-tauri`（Rust / Tauri v2 本地权威后端）**：完全离线可用，内嵌 12 章 95 张知识卡与 20 关 160 道题目，负责无答案泄露抽题洗牌、6/8 权威判题、单调递增关卡解锁、错题三连对移出、好感度与每日打卡结算，以及 AppData 原子落盘存储（存档、设置、壁纸、曲库及本地音频文件）。
+- **`packages/ai-proxy`（Node.js + TypeScript 云端 AI 转发代理）**：保护模型密钥（智谱主用 + 备用中转自动切换），白名单放行 Tauri WebView 跨域请求；无网或未配置时自动降级为离线规则回答。
+- **`packages/shared`**：前后端与代理共享的严格 TypeScript 领域契约。
+
+### 常用命令
+```bash
+# 1. 安装依赖并构建共享类型
+pnpm install && pnpm --filter @mnk/shared build
+
+# 2. 浏览器热更新开发 / Tauri 桌面端联调
+pnpm dev
+pnpm tauri dev
+
+# 3. 启动可选的 Node.js AI 转发代理（需先配置 packages/ai-proxy/.env）
+pnpm proxy:dev
+
+# 4. 全量类型检查、测试与生产构建
+pnpm run typecheck
+pnpm run test
+cargo test --manifest-path src-tauri/Cargo.toml
+pnpm run build
+
+# 5. Android 移动端初始化与打包
+pnpm tauri android init
+pnpm tauri android build --apk --debug
+```
+
+---
+
 ## 同仓库的另一个应用
 
 - **[Mnk Study Loop](study-loop/)** —— 把 Python 入门做成恋爱养成游戏：160 题、20 关樱花地图、翻翻卡涨好感度、错题本重做。单文件、零依赖，打开 [study-loop/index.html](study-loop/index.html) 即玩。

@@ -1,0 +1,644 @@
+[
+  {
+    "ch": "M1",
+    "title": "基础语法",
+    "cards": [
+      {
+        "tag": "变量与赋值",
+        "q": "Python 变量需要先声明类型吗？",
+        "a": "不需要。变量只是名字绑定到对象，动态类型；a, b = 1, 2 可以同时赋值，a, b = b, a 可直接交换。",
+        "doc": "Python 官方文档 · 执行模型 · 命名与绑定"
+      },
+      {
+        "tag": "数值与运算符",
+        "q": "// 和 % 与 / 有什么区别？",
+        "a": "/ 是真除法返回 float；// 是向下取整的整除；% 取余，符号跟除数一致。-7 // 2 == -4。",
+        "doc": "Python 官方文档 · 算术运算符"
+      },
+      {
+        "tag": "字符串",
+        "q": "字符串是不可变的，那 s[0] = 'x' 会怎样？",
+        "a": "抛 TypeError。字符串不可原地修改，只能生成新串：s = 'x' + s[1:]。",
+        "doc": "Python 官方文档 · 文本序列类型 str"
+      },
+      {
+        "tag": "f-string",
+        "q": "f-string 如何控制小数位与补零？",
+        "a": "f\"{pi:.2f}\" 保留两位小数；f\"{n:05d}\" 补零到 5 位；f\"{x:>8}\" 右对齐 8 宽。",
+        "doc": "Python 官方文档 · 格式化字符串字面值"
+      },
+      {
+        "tag": "类型转换",
+        "q": "int('12.5') 能成功吗？",
+        "a": "不能，抛 ValueError。要先 float('12.5') 再 int()，或 int(float('12.5'))。int('12') 才合法。",
+        "doc": "Python 官方文档 · 内置函数 · int"
+      },
+      {
+        "tag": "输入输出",
+        "q": "input() 拿到数字要怎么做运算？",
+        "a": "input() 永远返回 str，必须显式 int(input()) 或 float(input()) 才能参与算术。",
+        "doc": "Python 官方文档 · 内置函数 · input"
+      },
+      {
+        "tag": "布尔与比较",
+        "q": "哪些值在 if 里判定为假？",
+        "a": "False、None、0、0.0、''、[]、()、{}、set() 等空容器；其余为真。",
+        "doc": "Python 官方文档 · 真值测试"
+      },
+      {
+        "tag": "注释与缩进",
+        "q": "缩进不一致会报什么错？",
+        "a": "IndentationError（语法错误的一种）；混用 Tab 与空格还会抛 TabError。PEP 8 推荐 4 空格。",
+        "doc": "PEP 8 · 缩进"
+      }
+    ]
+  },
+  {
+    "ch": "M2",
+    "title": "流程控制",
+    "cards": [
+      {
+        "tag": "if/elif",
+        "q": "多个 elif 会全部判断一遍吗？",
+        "a": "不会。自上而下，命中第一个为真的分支就执行并跳出整个结构，后面的不再判断。",
+        "doc": "Python 官方文档 · if 语句"
+      },
+      {
+        "tag": "for 循环",
+        "q": "for 循环遍历的是什么？",
+        "a": "任何可迭代对象（list/str/dict/range/生成器）。遍历 dict 默认拿到键。",
+        "doc": "Python 官方文档 · for 语句"
+      },
+      {
+        "tag": "range",
+        "q": "range(1, 10, 2) 包含哪些数？",
+        "a": "1,3,5,7,9。左闭右开，step 可为负；range 是惰性序列，不占列表内存。",
+        "doc": "Python 官方文档 · range 对象"
+      },
+      {
+        "tag": "while 循环",
+        "q": "while 循环最容易出什么问题？",
+        "a": "死循环：循环变量没有在循环体内改变，条件永远为真。",
+        "doc": "Python 官方文档 · while 语句"
+      },
+      {
+        "tag": "break/continue",
+        "q": "break 和 continue 的区别？",
+        "a": "break 直接结束整个循环；continue 只跳过本次剩余语句，进入下一次迭代。",
+        "doc": "Python 官方文档 · break 与 continue"
+      },
+      {
+        "tag": "循环 else",
+        "q": "for ... else 的 else 什么时候执行？",
+        "a": "循环自然结束（没有被 break 打断）时执行；常用于“没找到”分支。",
+        "doc": "Python 官方文档 · 循环中的 else 子句"
+      },
+      {
+        "tag": "嵌套循环",
+        "q": "双重 for 循环总共执行多少次内层？",
+        "a": "外层次数 × 内层次数；若内层用了 break，只跳出最内层那一轮。",
+        "doc": "Python 官方文档 · 复合语句"
+      },
+      {
+        "tag": "条件表达式",
+        "q": "x if cond else y 怎么读？",
+        "a": "条件表达式：cond 为真取 x，否则取 y。只能是一个表达式，不能写语句。",
+        "doc": "Python 官方文档 · 条件表达式"
+      }
+    ]
+  },
+  {
+    "ch": "M3",
+    "title": "数据结构",
+    "cards": [
+      {
+        "tag": "列表",
+        "q": "append 和 extend 有什么区别？",
+        "a": "append(x) 把 x 整体当一个元素加入；extend(iterable) 把可迭代对象逐个展开加入。",
+        "doc": "Python 官方文档 · 列表方法"
+      },
+      {
+        "tag": "切片",
+        "q": "s[::-1] 做了什么？",
+        "a": "步长为 -1 的反转切片，返回新对象；原列表不变。切片是浅拷贝。",
+        "doc": "Python 官方文档 · 序列类型 · 切片"
+      },
+      {
+        "tag": "元组",
+        "q": "元组不可变，那 t = ([1], 2) 能改吗？",
+        "a": "元组本身不可变，但里面的可变元素可以改：t[0].append(3) 合法，t[1] = 3 抛 TypeError。",
+        "doc": "Python 官方文档 · 元组"
+      },
+      {
+        "tag": "字典",
+        "q": "d.get(k) 和 d[k] 的区别？",
+        "a": "d[k] 键不存在抛 KeyError；d.get(k) 返回 None，d.get(k, 默认值) 返回默认值。",
+        "doc": "Python 官方文档 · 映射类型 dict"
+      },
+      {
+        "tag": "集合",
+        "q": "set 能放列表吗？",
+        "a": "不能，元素必须可哈希。list/dict 不可哈希，tuple 可以。set 本身去重且无序。",
+        "doc": "Python 官方文档 · 集合类型"
+      },
+      {
+        "tag": "推导式",
+        "q": "推导式和 for 循环谁快？",
+        "a": "推导式通常更快：在 C 层完成追加，且不需要反复调用 append。",
+        "doc": "Python 官方文档 · 推导式"
+      },
+      {
+        "tag": "排序",
+        "q": "sorted 和 list.sort 的区别？",
+        "a": "sorted 返回新列表，原对象不变，可接受任何可迭代；list.sort 原地排序返回 None。",
+        "doc": "Python 官方文档 · 排序"
+      },
+      {
+        "tag": "解包",
+        "q": "a, *rest = [1,2,3,4] 的结果？",
+        "a": "a=1，rest=[2,3,4]。星号收集剩余元素为列表，可放在任意位置。",
+        "doc": "Python 官方文档 · 赋值语句 · 解包"
+      }
+    ]
+  },
+  {
+    "ch": "M4",
+    "title": "函数",
+    "cards": [
+      {
+        "tag": "函数定义",
+        "q": "没有 return 的函数返回什么？",
+        "a": "返回 None。return 同时结束函数执行，return 多个值其实是返回元组。",
+        "doc": "Python 官方文档 · 函数定义"
+      },
+      {
+        "tag": "参数与默认值",
+        "q": "默认参数为什么不能写可变对象？",
+        "a": "默认值只在定义时求值一次，所有调用共享同一个 list；要写成 def f(x=None)。",
+        "doc": "Python 官方文档 · 默认参数值"
+      },
+      {
+        "tag": "可变参数",
+        "q": "*args 和 **kwargs 分别收集什么？",
+        "a": "*args 收集多余位置参数为 tuple；**kwargs 收集多余关键字参数为 dict。",
+        "doc": "Python 官方文档 · 可变参数"
+      },
+      {
+        "tag": "作用域",
+        "q": "函数里给全局变量赋值会发生什么？",
+        "a": "不加 global 会创建同名局部变量，外层不变；要改全局必须写 global x。",
+        "doc": "Python 官方文档 · global 与 nonlocal"
+      },
+      {
+        "tag": "lambda",
+        "q": "lambda 有什么限制？",
+        "a": "只能写单个表达式，不能包含语句或 return；常用于 sorted(key=)、map、filter。",
+        "doc": "Python 官方文档 · lambda 表达式"
+      },
+      {
+        "tag": "高阶函数",
+        "q": "map 和 filter 返回什么？",
+        "a": "都返回惰性迭代器，要用 list() 才看到全部结果；Python 3 起不再返回列表。",
+        "doc": "Python 官方文档 · 内置函数 · map/filter"
+      },
+      {
+        "tag": "递归",
+        "q": "写递归必须注意什么？",
+        "a": "必须有终止条件，否则 RecursionError；Python 默认递归深度约 1000 层。",
+        "doc": "Python 官方文档 · 递归限制"
+      },
+      {
+        "tag": "返回值",
+        "q": "函数能返回多个值吗？",
+        "a": "语法上 return a, b 返回的是元组 (a, b)，接收时可用 a, b = f() 解包。",
+        "doc": "Python 官方文档 · return 语句"
+      }
+    ]
+  },
+  {
+    "ch": "M5",
+    "title": "文件与异常",
+    "cards": [
+      {
+        "tag": "文件模式",
+        "q": "r、w、a、r+ 分别是什么行为？",
+        "a": "r 只读，文件不存在报错；w 清空重写；a 追加；r+ 读写且不清空。",
+        "doc": "Python 官方文档 · open · 模式"
+      },
+      {
+        "tag": "文件读写",
+        "q": "read()、readline()、readlines() 区别？",
+        "a": "read 读全部为字符串；readline 读一行；readlines 读全部为字符串列表。大文件用 for line in f。",
+        "doc": "Python 官方文档 · 文件对象"
+      },
+      {
+        "tag": "with 语句",
+        "q": "为什么推荐 with open(...) as f？",
+        "a": "上下文管理器保证退出时自动 close，即使块内抛异常也不泄露文件句柄。",
+        "doc": "Python 官方文档 · with 语句"
+      },
+      {
+        "tag": "异常类型",
+        "q": "KeyError、IndexError、ValueError 各在什么场景？",
+        "a": "KeyError 字典键不存在；IndexError 序列下标越界；ValueError 类型对但值不合法（如 int('abc')）。",
+        "doc": "Python 官方文档 · 内置异常"
+      },
+      {
+        "tag": "try/except/else/finally",
+        "q": "四个块各自什么时候执行？",
+        "a": "try 放风险代码；except 捕获到异常时执行；else 无异常时执行；finally 无论如何都执行。",
+        "doc": "Python 官方文档 · 异常处理"
+      },
+      {
+        "tag": "自定义异常",
+        "q": "自定义异常怎么定义？",
+        "a": "class MyError(Exception): pass，抛 raise MyError('msg')，用 except MyError 捕获。",
+        "doc": "Python 官方文档 · 用户自定义异常"
+      },
+      {
+        "tag": "编码",
+        "q": "open 时 encoding 不写会怎样？",
+        "a": "使用系统默认编码（Windows 常为 GBK），跨平台易乱码或 UnicodeDecodeError，建议显式 encoding='utf-8'。",
+        "doc": "Python 官方文档 · 文本编码"
+      }
+    ]
+  },
+  {
+    "ch": "M6",
+    "title": "面向对象",
+    "cards": [
+      {
+        "tag": "类与实例",
+        "q": "类属性和实例属性有什么区别？",
+        "a": "类属性定义在类体内，所有实例共享；实例属性在 __init__ 里用 self.x 赋值，各自独立。",
+        "doc": "Python 官方文档 · 类"
+      },
+      {
+        "tag": "构造方法",
+        "q": "__init__ 什么时候被调用？",
+        "a": "实例化时自动调用，self 指向新对象；它不返回对象，写 return 非 None 会报 TypeError。",
+        "doc": "Python 官方文档 · 类 · __init__"
+      },
+      {
+        "tag": "继承",
+        "q": "子类怎么调用父类方法？",
+        "a": "super().method(...)，等价于父类名.method(self, ...)，但 super 支持多重继承的 MRO 链。",
+        "doc": "Python 官方文档 · 继承"
+      },
+      {
+        "tag": "方法重写",
+        "q": "重写方法后如何保留父类逻辑？",
+        "a": "在子类方法里先调 super().method(...)，再补充自己的逻辑。",
+        "doc": "Python 官方文档 · 继承"
+      },
+      {
+        "tag": "MRO",
+        "q": "C(A, B) 时方法查找顺序？",
+        "a": "按方法解析顺序 MRO：C → A → B → object（C3 线性化），可用 C.mro() 查看。",
+        "doc": "Python 官方文档 · 多重继承 · MRO"
+      },
+      {
+        "tag": "特殊方法",
+        "q": "__str__ 和 __repr__ 的区别？",
+        "a": "__str__ 给人看（print），__repr__ 给开发者看（交互式回显）；只定义 __repr__ 时 print 也会用它。",
+        "doc": "Python 官方文档 · 特殊方法"
+      },
+      {
+        "tag": "类方法与静态方法",
+        "q": "@classmethod 和 @staticmethod 区别？",
+        "a": "classmethod 第一个参数是 cls，可访问类属性、常用于备用构造器；staticmethod 不自动传参，等同普通函数。",
+        "doc": "Python 官方文档 · 函数装饰器 · classmethod"
+      },
+      {
+        "tag": "属性与封装",
+        "q": "@property 有什么用？",
+        "a": "把方法伪装成属性访问，可在取值/赋值时加校验，实现只读属性和封装。",
+        "doc": "Python 官方文档 · property"
+      }
+    ]
+  },
+  {
+    "ch": "M7",
+    "title": "模块与包",
+    "cards": [
+      {
+        "tag": "import",
+        "q": "import math 之后怎么用？",
+        "a": "用 math.sqrt(9) 这种“模块名.成员”方式访问；被导入的模块只在首次导入时执行一次。",
+        "doc": "Python 官方文档 · 模块"
+      },
+      {
+        "tag": "from import",
+        "q": "from math import sqrt 有什么风险？",
+        "a": "会把 sqrt 塞进当前命名空间，可能覆盖同名变量；from m import * 更不推荐。",
+        "doc": "Python 官方文档 · 导入语句"
+      },
+      {
+        "tag": "模块搜索路径",
+        "q": "import 时按什么顺序找模块？",
+        "a": "先查 sys.modules 缓存，再依次查内置模块、sys.path（当前目录、PYTHONPATH、site-packages）。",
+        "doc": "Python 官方文档 · 模块搜索路径"
+      },
+      {
+        "tag": "包结构",
+        "q": "包里的 __init__.py 有什么作用？",
+        "a": "标识目录为包并在导入包时执行，可用来控制对外暴露的接口（__all__）。",
+        "doc": "Python 官方文档 · 包"
+      },
+      {
+        "tag": "标准库 math",
+        "q": "math.floor 和 int 有什么区别？",
+        "a": "math.floor 返回不大于参数的最大整数（向下取整），对负数与 int 不同：int(-1.5) == -1，floor(-1.5) == -2。",
+        "doc": "Python 官方文档 · math"
+      },
+      {
+        "tag": "标准库 random",
+        "q": "random.seed(42) 有什么意义？",
+        "a": "固定随机种子，使后续随机序列可复现，便于测试和调试。",
+        "doc": "Python 官方文档 · random"
+      },
+      {
+        "tag": "json",
+        "q": "json.dumps 和 json.loads 的方向？",
+        "a": "dumps 把 Python 对象序列化成 JSON 字符串；loads 把 JSON 字符串解析成 Python 对象。",
+        "doc": "Python 官方文档 · json"
+      },
+      {
+        "tag": "re",
+        "q": "re.findall 返回什么？",
+        "a": "返回所有不重叠匹配组成的列表；无分组时是字符串列表，有分组时是元组列表。",
+        "doc": "Python 官方文档 · re"
+      }
+    ]
+  },
+  {
+    "ch": "M8",
+    "title": "算法入门",
+    "cards": [
+      {
+        "tag": "时间复杂度",
+        "q": "常见复杂度从低到高怎么排？",
+        "a": "O(1) < O(log n) < O(n) < O(n log n) < O(n²) < O(2ⁿ)。",
+        "doc": "算法导论 · 渐进记号"
+      },
+      {
+        "tag": "空间复杂度",
+        "q": "递归算法的空间开销来自哪里？",
+        "a": "调用栈：每层递归压一帧，空间 O(递归深度)。",
+        "doc": "算法导论 · 空间复杂度"
+      },
+      {
+        "tag": "排序",
+        "q": "冒泡排序最坏时间复杂度？",
+        "a": "O(n²)，最好（已有序且加标志位优化）O(n)；稳定排序。",
+        "doc": "算法导论 · 排序"
+      },
+      {
+        "tag": "二分查找",
+        "q": "二分查找的前提和时间复杂度？",
+        "a": "前提是序列有序，每次砍半，时间 O(log n)，空间 O(1)（迭代版）。",
+        "doc": "算法导论 · 二分查找"
+      },
+      {
+        "tag": "递归",
+        "q": "汉诺塔 n 层需要多少步？",
+        "a": "2ⁿ − 1 步；递推 T(n) = 2T(n−1) + 1。",
+        "doc": "算法导论 · 分治"
+      },
+      {
+        "tag": "动态规划",
+        "q": "动态规划适用的两个前提？",
+        "a": "最优子结构 + 重叠子问题；核心是状态定义与转移方程，可用记忆化或自底向上。",
+        "doc": "算法导论 · 动态规划"
+      },
+      {
+        "tag": "哈希表",
+        "q": "哈希表平均查找复杂度？",
+        "a": "平均 O(1)，最坏 O(n)（大量冲突）；Python 的 dict/set 基于哈希表。",
+        "doc": "算法导论 · 散列表"
+      }
+    ]
+  },
+  {
+    "ch": "M9",
+    "title": "爬虫基础",
+    "cards": [
+      {
+        "tag": "HTTP 请求",
+        "q": "GET 和 POST 的主要区别？",
+        "a": "GET 参数拼在 URL 上、有长度限制、可被缓存；POST 数据放请求体、适合提交与上传。",
+        "doc": "RFC 9110 · HTTP 语义"
+      },
+      {
+        "tag": "响应状态码",
+        "q": "200/301/403/404/500 分别代表什么？",
+        "a": "200 成功；301 永久重定向；403 禁止访问；404 不存在；500 服务器内部错误。",
+        "doc": "RFC 9110 · 状态码"
+      },
+      {
+        "tag": "请求头",
+        "q": "User-Agent 有什么用？",
+        "a": "标识客户端类型，服务器据此返回不同内容；爬虫常伪装 UA，但伪装不等于合规。",
+        "doc": "RFC 9110 · 请求头"
+      },
+      {
+        "tag": "URL 与查询串",
+        "q": "urlparse 和 parse_qs 各返回什么？",
+        "a": "urlparse 把 URL 拆成 scheme/netloc/path/query 等部分；parse_qs 把 query 解析成 {参数: [值列表]}，值永远是列表。",
+        "doc": "Python 官方文档 · urllib.parse"
+      },
+      {
+        "tag": "HTML 解析",
+        "q": "BeautifulSoup 里 find 和 find_all 的区别？",
+        "a": "find 返回第一个匹配的 Tag；find_all 返回所有匹配的列表。",
+        "doc": "BeautifulSoup 文档 · 搜索文档树"
+      },
+      {
+        "tag": "CSS 选择器",
+        "q": "soup.select('div.item > a') 选中什么？",
+        "a": "选中 class 含 item 的 div 的直接子元素 a，返回列表。",
+        "doc": "BeautifulSoup 文档 · CSS 选择器"
+      },
+      {
+        "tag": "编码",
+        "q": "response.encoding 不设置会怎样？",
+        "a": "requests 可能按错误编码猜解，中文乱码；可显式 response.encoding = 'utf-8'。",
+        "doc": "requests 文档 · 响应内容"
+      },
+      {
+        "tag": "robots 与合规",
+        "q": "robots.txt 的法律/道德地位？",
+        "a": "是爬虫约定，非强制技术限制；遵守它并控制频率是合规抓取的基础。",
+        "doc": "RFC 9309 · Robots 排除协议"
+      },
+      {
+        "tag": "反爬应对",
+        "q": "请求频率过高常见后果？",
+        "a": "返回 429/403、IP 被封、要求验证码；应加延时、限速、遵守站点条款。",
+        "doc": "RFC 9110 · 429 Too Many Requests"
+      }
+    ]
+  },
+  {
+    "ch": "M10",
+    "title": "数据分析",
+    "cards": [
+      {
+        "tag": "numpy 数组",
+        "q": "ndarray 和 list 的核心区别？",
+        "a": "ndarray 同类型、连续内存、支持向量化运算，比 list 快且省内存。",
+        "doc": "NumPy 文档 · ndarray"
+      },
+      {
+        "tag": "数组运算",
+        "q": "a + 1 对数组做了什么？",
+        "a": "广播：对每个元素加 1，返回新数组；形状不兼容时抛 ValueError。",
+        "doc": "NumPy 文档 · 广播"
+      },
+      {
+        "tag": "pandas Series",
+        "q": "Series 和 numpy 数组的区别？",
+        "a": "Series 带索引（label），支持按标签对齐运算；底层仍是 ndarray。",
+        "doc": "pandas 文档 · Series"
+      },
+      {
+        "tag": "DataFrame",
+        "q": "df['a'] 和 df[['a']] 的区别？",
+        "a": "前者返回 Series，后者返回只含 a 列的 DataFrame。",
+        "doc": "pandas 文档 · 索引"
+      },
+      {
+        "tag": "缺失值",
+        "q": "NaN 参与求和会怎样？",
+        "a": "默认被跳过（skipna=True），结果仍是数字；isna() 可定位缺失位置。",
+        "doc": "pandas 文档 · 缺失数据"
+      },
+      {
+        "tag": "筛选与索引",
+        "q": "iloc 和 loc 的区别？",
+        "a": "iloc 按位置整数索引；loc 按标签索引（含右端点）。",
+        "doc": "pandas 文档 · 索引与选择"
+      },
+      {
+        "tag": "分组聚合",
+        "q": "groupby 之后通常接什么？",
+        "a": "聚合函数（sum/mean/count）或 agg，得到每组一个结果。",
+        "doc": "pandas 文档 · groupby"
+      },
+      {
+        "tag": "统计量",
+        "q": "describe() 输出哪些统计量？",
+        "a": "count、mean、std、min、25%/50%/75% 分位、max。",
+        "doc": "pandas 文档 · describe"
+      }
+    ]
+  },
+  {
+    "ch": "M11",
+    "title": "进阶语法",
+    "cards": [
+      {
+        "tag": "迭代器",
+        "q": "可迭代对象和迭代器有什么区别？",
+        "a": "可迭代对象实现 __iter__；迭代器同时实现 __iter__ 和 __next__，且只能遍历一次。",
+        "doc": "Python 官方文档 · 迭代器类型"
+      },
+      {
+        "tag": "生成器",
+        "q": "生成器和普通函数返回列表的区别？",
+        "a": "生成器用 yield 惰性产出，不一次性占内存；list(gen) 才会全部求值。",
+        "doc": "Python 官方文档 · 生成器"
+      },
+      {
+        "tag": "装饰器",
+        "q": "装饰器本质是什么？",
+        "a": "接收函数、返回新函数的高阶函数；@deco 等价于 f = deco(f)。",
+        "doc": "Python 官方文档 · 函数定义 · 装饰器"
+      },
+      {
+        "tag": "上下文管理器",
+        "q": "自定义上下文管理器要实现什么？",
+        "a": "__enter__ 返回资源、__exit__ 负责清理并决定是否吞掉异常。",
+        "doc": "Python 官方文档 · with 语句上下文管理器"
+      },
+      {
+        "tag": "闭包",
+        "q": "闭包怎么修改外层变量？",
+        "a": "用 nonlocal 声明；否则赋值会创建新的局部变量。",
+        "doc": "Python 官方文档 · nonlocal"
+      },
+      {
+        "tag": "推导式进阶",
+        "q": "带 if-else 的推导式怎么写？",
+        "a": "[x if x>0 else 0 for x in nums]：if 在前是取值分支，if 在后是过滤。",
+        "doc": "Python 官方文档 · 推导式"
+      },
+      {
+        "tag": "类型注解",
+        "q": "注解会在运行时检查类型吗？",
+        "a": "不会，注解只是元数据（存于 __annotations__），需 mypy 等静态检查工具。",
+        "doc": "PEP 484 · 类型提示"
+      },
+      {
+        "tag": "异常链",
+        "q": "raise ... from e 有什么用？",
+        "a": "显式保留原始异常为 __cause__，便于定位根因。",
+        "doc": "PEP 3134 · 异常链"
+      }
+    ]
+  },
+  {
+    "ch": "M12",
+    "title": "综合实战",
+    "cards": [
+      {
+        "tag": "代码阅读",
+        "q": "读一段代码先看什么？",
+        "a": "先看输入输出与边界，再看分支与循环，最后确认可变对象是否被就地修改。",
+        "doc": "Python 官方文档 · 语言参考"
+      },
+      {
+        "tag": "调试排错",
+        "q": "看到 Traceback 先看哪一行？",
+        "a": "先看最后一行异常类型与消息，再往上找第一个属于自己代码的帧。",
+        "doc": "Python 官方文档 · 错误与异常"
+      },
+      {
+        "tag": "数据处理",
+        "q": "统计词频用什么结构？",
+        "a": "dict 或 collections.Counter；Counter 有 most_common(n) 直接取前 n。",
+        "doc": "Python 官方文档 · collections.Counter"
+      },
+      {
+        "tag": "字符串处理",
+        "q": "split 和 splitlines 区别？",
+        "a": "split 按给定分隔符切（默认任意空白）；splitlines 按行切且保留换行语义。",
+        "doc": "Python 官方文档 · str.splitlines"
+      },
+      {
+        "tag": "算法应用",
+        "q": "两数之和的最优解法？",
+        "a": "用哈希表存「目标值 − 当前值」的下标，一次遍历 O(n)。",
+        "doc": "LeetCode 1 · 两数之和"
+      },
+      {
+        "tag": "文件处理",
+        "q": "逐行处理大文件的推荐写法？",
+        "a": "with open(...) as f: for line in f: —— 惰性迭代，不会一次性读入内存。",
+        "doc": "Python 官方文档 · 文件对象"
+      },
+      {
+        "tag": "类设计",
+        "q": "什么时候该用类而不是函数？",
+        "a": "需要维护状态、封装多条相关操作、或表达一组同类实体时用类。",
+        "doc": "Python 官方文档 · 类"
+      },
+      {
+        "tag": "综合输出",
+        "q": "print 的 sep 和 end 参数？",
+        "a": "sep 控制多参数分隔符（默认空格），end 控制结尾（默认换行）。",
+        "doc": "Python 官方文档 · print"
+      }
+    ]
+  }
+]
