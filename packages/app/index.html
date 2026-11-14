@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="mnk-mobile mnk-first-run">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no,viewport-fit=cover,interactive-widget=resizes-content"
+    />
+    <meta name="theme-color" content="#F8F1F2" />
+    <title>Mnk Study Loop</title>
+    <script>
+      (function () {
+        var de = document.documentElement;
+        function syncVp() {
+          var vv = window.visualViewport;
+          var h = (vv ? vv.height : window.innerHeight) || 852;
+          var w = (vv ? vv.width : window.innerWidth) || 393;
+          de.style.setProperty("--mnk-vvwh", h + "px");
+          de.style.setProperty("--mnk-vvw", w + "px");
+        }
+        syncVp();
+        window.addEventListener("resize", syncVp, { passive: true });
+        if (window.visualViewport) {
+          window.visualViewport.addEventListener("resize", syncVp, { passive: true });
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

@@ -1,0 +1,2242 @@
+[
+  {
+    "m": "L1",
+    "kind": "read",
+    "tag": "输入输出",
+    "q": "这段代码运行后，屏幕上一共显示几行文字？\n# 名片第一行\nprint(\"小明\")\nprint(\"大一新生\")",
+    "opts": [
+      "2 行",
+      "3 行",
+      "1 行",
+      "0 行，有注释就不会输出"
+    ],
+    "ans": 0,
+    "doc": "注释不产生输出"
+  },
+  {
+    "m": "L1",
+    "kind": "read",
+    "tag": "字符串",
+    "q": "运行这段代码，屏幕上显示的是什么？\nprint('Python')\nprint(\"Python\")",
+    "opts": [
+      "两行，都是 Python，不带引号",
+      "两行，第一行带单引号、第二行带双引号",
+      "只有一行 Python",
+      "报错，单引号和双引号不能混用"
+    ],
+    "ans": 0,
+    "doc": "引号只是标记，不显示出来"
+  },
+  {
+    "m": "L1",
+    "kind": "blank",
+    "tag": "字符串",
+    "q": "要输出：他说\"你好\"（屏幕上保留双引号），横线处应填？\nprint(____)",
+    "opts": [
+      "'他说\"你好\"'",
+      "\"他说\"你好\"\"",
+      "'他说'你好''",
+      "他说\"你好\""
+    ],
+    "ans": 0,
+    "doc": "外面用单引号，里面就能放双引号"
+  },
+  {
+    "m": "L1",
+    "kind": "blank",
+    "tag": "注释与缩进",
+    "q": "想在代码里写一句给人看的说明「打印问候语」，又不影响运行，横线处应填？\n____ 打印问候语\nprint(\"你好\")",
+    "opts": [
+      "#",
+      "//",
+      "/*",
+      "--"
+    ],
+    "ans": 0,
+    "doc": "Python 用 # 写单行注释"
+  },
+  {
+    "m": "L1",
+    "kind": "bug",
+    "tag": "字符串",
+    "q": "下面哪一行代码会报错？",
+    "opts": [
+      "print(\"你好\")",
+      "print('你好')",
+      "print(\"你好')",
+      "print(\"你好\" )"
+    ],
+    "ans": 2,
+    "doc": "左右引号必须成对且同一种"
+  },
+  {
+    "m": "L1",
+    "kind": "bug",
+    "tag": "字符串",
+    "q": "运行 print(你好) 会发生什么？",
+    "opts": [
+      "屏幕输出 你好",
+      "报错：NameError，你好 不是已定义的变量",
+      "屏幕输出 \"你好\"，带引号",
+      "屏幕输出一个空行"
+    ],
+    "ans": 1,
+    "doc": "文字要放进引号里才是字符串"
+  },
+  {
+    "m": "L1",
+    "kind": "pick",
+    "tag": "输入输出",
+    "q": "【选实现】任务：屏幕上分三行显示 小明、18 岁、爱打篮球。哪段代码能做到？",
+    "opts": [
+      "print(\"小明\")\nprint(\"18 岁\")\nprint(\"爱打篮球\")",
+      "print(\"小明\" \"18 岁\" \"爱打篮球\")",
+      "print(\"小明\"\nprint(\"18 岁\"\nprint(\"爱打篮球\")",
+      "print(\"小明\", \"18 岁\", \"爱打篮球\")"
+    ],
+    "ans": 0,
+    "doc": "想分几行就用几个 print"
+  },
+  {
+    "m": "L1",
+    "kind": "concept",
+    "tag": "字符串",
+    "q": "关于 print 和字符串，下面哪个说法正确？",
+    "opts": [
+      "字符串可以用单引号或双引号括起来",
+      "字符串只能用双引号，单引号一定报错",
+      "print 后面必须加分号",
+      "代码后面的注释也会被打印出来"
+    ],
+    "ans": 0,
+    "doc": "单双引号等价"
+  },
+  {
+    "m": "L2",
+    "kind": "read",
+    "tag": "输入输出",
+    "q": "运行下面代码时输入 18，会发生什么？\nage = input(\"年龄：\")\nprint(age + 1)",
+    "opts": [
+      "显示 19",
+      "显示 181",
+      "报错：字符串不能和整数相加",
+      "显示 18"
+    ],
+    "ans": 2,
+    "doc": "input 返回的一定是字符串"
+  },
+  {
+    "m": "L2",
+    "kind": "read",
+    "tag": "f-string",
+    "q": "运行下面代码，屏幕显示什么？\nname = \"小明\"\nprint(f\"你好，{name}\")",
+    "opts": [
+      "你好，小明",
+      "你好，{name}",
+      "你好，name",
+      "报错，f 不能写在引号前面"
+    ],
+    "ans": 0,
+    "doc": "f-string 会把 {} 里的变量换成值"
+  },
+  {
+    "m": "L2",
+    "kind": "blank",
+    "tag": "类型转换",
+    "q": "输入 18，要让下面代码输出 19，横线处应填？\nage = ____(input(\"年龄：\"))\nprint(age + 1)",
+    "opts": [
+      "int",
+      "str",
+      "input",
+      "print"
+    ],
+    "ans": 0,
+    "doc": "int() 把字符串变成整数"
+  },
+  {
+    "m": "L2",
+    "kind": "blank",
+    "tag": "f-string",
+    "q": "要输出 小明 明年 19 岁，横线处应填？\nname = \"小明\"\nage = 18\nprint(____\"{name} 明年 {age + 1} 岁\")",
+    "opts": [
+      "f",
+      "r",
+      "b",
+      "str"
+    ],
+    "ans": 0,
+    "doc": "f 前缀要贴在引号前面"
+  },
+  {
+    "m": "L2",
+    "kind": "bug",
+    "tag": "输入输出",
+    "q": "下面的代码想算明年年龄，运行时却报错，问题出在哪？\nname = input(\"姓名：\")\nage = input(\"年龄：\")\nprint(f\"{name} 明年 {age + 1} 岁\")",
+    "opts": [
+      "age 还是字符串，不能和 1 相加",
+      "f-string 的 {} 里不能写表达式",
+      "变量不能叫 name",
+      "input 不能连续调用两次"
+    ],
+    "ans": 0,
+    "doc": "先 int(age) 再计算"
+  },
+  {
+    "m": "L2",
+    "kind": "bug",
+    "tag": "变量与赋值",
+    "q": "下面哪一行会报错？",
+    "opts": [
+      "name = \"小明\"",
+      "\"name\" = \"小明\"",
+      "age = 18",
+      "score = 95.5"
+    ],
+    "ans": 1,
+    "doc": "等号左边必须是变量名，不能加引号"
+  },
+  {
+    "m": "L2",
+    "kind": "pick",
+    "tag": "f-string",
+    "q": "【选实现】任务：依次输入 小明 和 18，输出 小明 明年 19 岁。哪段代码能做到？",
+    "opts": [
+      "name = input()\nage = int(input())\nprint(f\"{name} 明年 {age+1} 岁\")",
+      "name = input()\nage = input()\nprint(f\"{name} 明年 {age+1} 岁\")",
+      "name = input()\nage = int(input())\nprint(\"{name} 明年 {age+1} 岁\")",
+      "name = input()\nage = int(input())\nprint(name + \"明年\" + age + 1)"
+    ],
+    "ans": 0,
+    "doc": "转换 + f 前缀 缺一不可"
+  },
+  {
+    "m": "L2",
+    "kind": "concept",
+    "tag": "输入输出",
+    "q": "关于 input()，下面哪个说法正确？",
+    "opts": [
+      "它返回的永远是字符串，要算数得先转换",
+      "它返回的数字可以直接做加法",
+      "它只能调用一次，第二次会报错",
+      "它必须写在 print 里面才能用"
+    ],
+    "ans": 0,
+    "doc": "input 一律返回 str"
+  },
+  {
+    "m": "L3",
+    "kind": "read",
+    "tag": "数值与运算符",
+    "q": "运行这段代码，屏幕显示什么？\nprint(17 // 5)\nprint(17 % 5)",
+    "opts": [
+      "第一行 3，第二行 2",
+      "第一行 3.4，第二行 2",
+      "第一行 2，第二行 3",
+      "第一行 3，第二行 3.4"
+    ],
+    "ans": 0,
+    "doc": "// 求商，% 求余"
+  },
+  {
+    "m": "L3",
+    "kind": "read",
+    "tag": "f-string",
+    "q": "运行这段代码，屏幕显示什么？\nscore = 87.456\nprint(f\"平均分：{score:.1f}\")",
+    "opts": [
+      "平均分：87.5",
+      "平均分：87.456",
+      "平均分：87",
+      "报错，.1f 不能写在 f-string 里"
+    ],
+    "ans": 0,
+    "doc": "{:.1f} 表示保留一位小数"
+  },
+  {
+    "m": "L3",
+    "kind": "blank",
+    "tag": "类型转换",
+    "q": "要从输入里读入两个整数并相加，横线处应填？\na = int(input())\nb = ____(input())\nprint(a + b)",
+    "opts": [
+      "int",
+      "str",
+      "print",
+      "len"
+    ],
+    "ans": 0,
+    "doc": "两个数都要转成整数"
+  },
+  {
+    "m": "L3",
+    "kind": "blank",
+    "tag": "f-string",
+    "q": "要输出 找零：3.50 元，横线处应填？\nchange = 3.5\nprint(f\"找零：____ 元\")",
+    "opts": [
+      "{change:.2f}",
+      "{change}",
+      "{change:.1f}",
+      "(change:.2f)"
+    ],
+    "ans": 0,
+    "doc": "{:.2f} 固定保留两位小数"
+  },
+  {
+    "m": "L3",
+    "kind": "bug",
+    "tag": "类型转换",
+    "q": "下面的代码想算总价，结果却把单价重复了三遍，问题出在哪？\nprice = input(\"单价：\")\ncount = 3\nprint(price * count)",
+    "opts": [
+      "input 拿到的是字符串，应该先 float(price)",
+      "count 不能参与乘法",
+      "print 里不能写乘法",
+      "字符串不能乘以整数"
+    ],
+    "ans": 0,
+    "doc": "字符串乘整数会重复字符串"
+  },
+  {
+    "m": "L3",
+    "kind": "bug",
+    "tag": "数值与运算符",
+    "q": "下面哪一行运行时会报错？",
+    "opts": [
+      "print(10 / 2)",
+      "print(10 // 0)",
+      "print(10 % 3)",
+      "print(10 * 2)"
+    ],
+    "ans": 1,
+    "doc": "除数不能为 0"
+  },
+  {
+    "m": "L3",
+    "kind": "pick",
+    "tag": "f-string",
+    "q": "【选实现】任务：输入单价和数量，输出总价并保留两位小数。哪段代码能做到？",
+    "opts": [
+      "price = float(input())\ncount = int(input())\nprint(f\"{price*count:.2f}\")",
+      "price = input()\ncount = input()\nprint(f\"{price*count:.2f}\")",
+      "price = float(input())\ncount = int(input())\nprint(f\"{price*count}\")",
+      "price = float(input())\ncount = int(input())\nprint(price*count:.2f)"
+    ],
+    "ans": 0,
+    "doc": "先转换类型，再用 :.2f 格式化"
+  },
+  {
+    "m": "L3",
+    "kind": "concept",
+    "tag": "数值与运算符",
+    "q": "关于 / 和 //，下面哪个说法正确？",
+    "opts": [
+      "/ 得到小数，// 得到向下取整的结果",
+      "/ 和 // 没有区别",
+      "// 会把结果四舍五入",
+      "/ 只能算整数"
+    ],
+    "ans": 0,
+    "doc": "/ 是除法，// 是整除"
+  },
+  {
+    "m": "L4",
+    "kind": "read",
+    "tag": "布尔与比较",
+    "q": "运行这段代码，屏幕显示什么？\nage = 18\nprint(age >= 18)",
+    "opts": [
+      "True",
+      "False",
+      "18",
+      "报错"
+    ],
+    "ans": 0,
+    "doc": "比较表达式的结果是布尔值"
+  },
+  {
+    "m": "L4",
+    "kind": "read",
+    "tag": "if/elif",
+    "q": "运行这段代码，屏幕显示什么？\nscore = 60\nif score >= 60:\n    print(\"及格\")\nelse:\n    print(\"不及格\")",
+    "opts": [
+      "及格",
+      "不及格",
+      "60",
+      "什么都不显示"
+    ],
+    "ans": 0,
+    "doc": "60 >= 60 成立，执行 if 分支"
+  },
+  {
+    "m": "L4",
+    "kind": "blank",
+    "tag": "布尔与比较",
+    "q": "要判断年龄是否在 18 到 60 岁之间（含 18 和 60），横线处应填？\nif ____:\n    print(\"成年\")",
+    "opts": [
+      "18 <= age <= 60",
+      "18 < age < 60",
+      "age >= 18 or age <= 60",
+      "age = 18 and 60"
+    ],
+    "ans": 0,
+    "doc": "Python 支持连续比较"
+  },
+  {
+    "m": "L4",
+    "kind": "blank",
+    "tag": "注释与缩进",
+    "q": "要让 print 属于 if 内部，横线处应填？\nif score >= 60:\n____print(\"及格\")",
+    "opts": [
+      "缩进 4 个空格",
+      "写一个 #",
+      "写一个分号",
+      "写一对大括号"
+    ],
+    "ans": 0,
+    "doc": "Python 用缩进表示代码块"
+  },
+  {
+    "m": "L4",
+    "kind": "bug",
+    "tag": "布尔与比较",
+    "q": "下面的代码想判断是否成年，运行时却报错，问题出在哪？\nage = 20\nif age = 18:\n    print(\"成年\")",
+    "opts": [
+      "判断相等要用 ==，= 是赋值",
+      "age 不能和 18 比较",
+      "print 不能写在 if 里面",
+      "18 要加引号"
+    ],
+    "ans": 0,
+    "doc": "= 赋值，== 判断相等"
+  },
+  {
+    "m": "L4",
+    "kind": "bug",
+    "tag": "注释与缩进",
+    "q": "下面的代码想判断是否及格，运行时却报错，问题出在哪？\nscore = 75\nif score >= 60:\nprint(\"及格\")",
+    "opts": [
+      "print 没有缩进，if 下面没有语句",
+      "score 不能是整数",
+      "if 后面不能写冒号",
+      "print 不能写中文"
+    ],
+    "ans": 0,
+    "doc": "if 下面的代码必须缩进"
+  },
+  {
+    "m": "L4",
+    "kind": "pick",
+    "tag": "if/elif",
+    "q": "【选实现】已知 age 是整数，任务：达到 18 岁就输出 成年。哪段代码能做到？",
+    "opts": [
+      "if age >= 18:\n    print(\"成年\")",
+      "if age > 18:\n    print(\"成年\")",
+      "if age >= 18\n    print(\"成年\")",
+      "if age >= 18:\nprint(\"成年\")"
+    ],
+    "ans": 0,
+    "doc": "条件后要冒号，下面要缩进"
+  },
+  {
+    "m": "L4",
+    "kind": "concept",
+    "tag": "注释与缩进",
+    "q": "关于 if 的缩进，下面哪个说法正确？",
+    "opts": [
+      "if 下面的语句必须缩进，通常 4 个空格",
+      "if 下面的语句不能缩进",
+      "缩进多少都行，只要和 print 对齐",
+      "if 后面必须加分号"
+    ],
+    "ans": 0,
+    "doc": "缩进是 Python 语法的一部分"
+  },
+  {
+    "m": "L5",
+    "kind": "read",
+    "tag": "if/elif",
+    "q": "运行这段代码，屏幕显示什么？\nscore = 75\nif score >= 90: print(\"A\")\nelif score >= 80: print(\"B\")\nelif score >= 60: print(\"C\")\nelse: print(\"D\")",
+    "opts": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "ans": 2,
+    "doc": "75 落在 60-79 区间，命中第三个分支"
+  },
+  {
+    "m": "L5",
+    "kind": "read",
+    "tag": "布尔与比较",
+    "q": "运行这段代码，屏幕显示什么？\nscore = 85\nprint(score >= 80 and score < 90)",
+    "opts": [
+      "报错",
+      "True",
+      "False",
+      "85"
+    ],
+    "ans": 1,
+    "doc": "85 同时满足两个条件"
+  },
+  {
+    "m": "L5",
+    "kind": "blank",
+    "tag": "if/elif",
+    "q": "要让 80 到 89 分输出 B，横线处应填？\nif score >= 90:\n    print(\"A\")\n____ score >= 80:\n    print(\"B\")\nelse:\n    print(\"C\")",
+    "opts": [
+      "elif",
+      "if",
+      "else",
+      "while"
+    ],
+    "ans": 0,
+    "doc": "第二个分支要用 elif"
+  },
+  {
+    "m": "L5",
+    "kind": "blank",
+    "tag": "布尔与比较",
+    "q": "要判断 60 到 79 分（含 60 和 79）输出 C，横线处应填？\nif ____:\n    print(\"C\")",
+    "opts": [
+      "60 < score < 79",
+      "score >= 60 or score <= 79",
+      "score = 60",
+      "60 <= score <= 79"
+    ],
+    "ans": 3,
+    "doc": "Python 支持连续比较"
+  },
+  {
+    "m": "L5",
+    "kind": "bug",
+    "tag": "if/elif",
+    "q": "下面的代码想给 95 分评 A，结果却输出了 C，问题出在哪？\nscore = 95\nif score >= 60: print(\"C\")\nelif score >= 90: print(\"A\")\nelse: print(\"D\")",
+    "opts": [
+      "elif 不能写在 if 后面",
+      "print 里不能写字母",
+      "先判断 >=60，95 分直接被 C 截走",
+      "95 太大存不下"
+    ],
+    "ans": 2,
+    "doc": "分支要按从高到低的顺序写"
+  },
+  {
+    "m": "L5",
+    "kind": "bug",
+    "tag": "if/elif",
+    "q": "下面的代码想判断等级，运行时却报语法错误，问题出在哪？\nscore = 85\nif score >= 90:\n    print(\"A\")\nelse if score >= 80:\n    print(\"B\")",
+    "opts": [
+      "Python 没有 else if，要写成 elif",
+      "print 不能写两次",
+      "score 不能和 90 比较",
+      "if 后面必须空一格"
+    ],
+    "ans": 0,
+    "doc": "else if 是别的语言的写法"
+  },
+  {
+    "m": "L5",
+    "kind": "pick",
+    "tag": "if/elif",
+    "q": "【选实现】任务：90 及以上输出 A，80-89 输出 B，其余输出 C。哪段代码能做到？",
+    "opts": [
+      "if score >= 90: print(\"A\")\nelif score >= 80: print(\"B\")\nelse: print(\"C\")",
+      "if score >= 80: print(\"B\")\nelif score >= 90: print(\"A\")\nelse: print(\"C\")",
+      "if score >= 90: print(\"A\")\nif score >= 80: print(\"B\")\nelse: print(\"C\")",
+      "if score > 90: print(\"A\")\nelif score > 80: print(\"B\")\nelse: print(\"C\")"
+    ],
+    "ans": 0,
+    "doc": "分支顺序从高到低，边界用 >="
+  },
+  {
+    "m": "L5",
+    "kind": "concept",
+    "tag": "if/elif",
+    "q": "关于 if/elif/else，下面哪个说法正确？",
+    "opts": [
+      "所有 elif 都会被依次判断一遍",
+      "else 必须写在最前面",
+      "elif 最多只能写一个",
+      "命中第一个为真的分支后，后面的不再判断"
+    ],
+    "ans": 3,
+    "doc": "分支自上而下，命中即跳出"
+  },
+  {
+    "m": "L6",
+    "kind": "read",
+    "tag": "range",
+    "q": "运行这段代码，屏幕依次显示什么？\nfor i in range(4):\n    print(i)",
+    "opts": [
+      "0、1、2、3",
+      "1、2、3、4",
+      "1、2、3",
+      "0、1、2、3、4"
+    ],
+    "ans": 0,
+    "doc": "range(4) 从 0 数到 3"
+  },
+  {
+    "m": "L6",
+    "kind": "read",
+    "tag": "for 循环",
+    "q": "运行这段代码，一共打印几行 你好？\nfor i in range(3):\n    print(\"你好\")",
+    "opts": [
+      "1 行",
+      "2 行",
+      "3 行",
+      "4 行"
+    ],
+    "ans": 2,
+    "doc": "range(3) 循环 3 次"
+  },
+  {
+    "m": "L6",
+    "kind": "blank",
+    "tag": "range",
+    "q": "要输出 1 到 5，横线处应填？\nfor i in range(____):\n    print(i)",
+    "opts": [
+      "0, 5",
+      "1, 6",
+      "1, 5",
+      "5"
+    ],
+    "ans": 1,
+    "doc": "左闭右开，所以终点写 6"
+  },
+  {
+    "m": "L6",
+    "kind": "blank",
+    "tag": "for 循环",
+    "q": "要打印 1 到 10，横线处应填？\nfor i in ____:\n    print(i)",
+    "opts": [
+      "range(10)",
+      "range(0, 10)",
+      "(1, 10)",
+      "range(1, 11)"
+    ],
+    "ans": 3,
+    "doc": "range(1, 11) 产生 1 到 10"
+  },
+  {
+    "m": "L6",
+    "kind": "bug",
+    "tag": "for 循环",
+    "q": "下面的代码想打印三次 加油，运行时却报错，问题出在哪？\nfor i in range(3):\nprint(\"加油\")",
+    "opts": [
+      "range 里不能写 3",
+      "print 不能写中文",
+      "print 没有缩进",
+      "for 后面少了一个变量"
+    ],
+    "ans": 2,
+    "doc": "循环体必须缩进"
+  },
+  {
+    "m": "L6",
+    "kind": "bug",
+    "tag": "range",
+    "q": "下面哪一行 range 的写法会报错？",
+    "opts": [
+      "range(\"5\")",
+      "range(5)",
+      "range(1, 10)",
+      "range(1, 10, 2)"
+    ],
+    "ans": 0,
+    "doc": "range 的参数必须是整数"
+  },
+  {
+    "m": "L6",
+    "kind": "pick",
+    "tag": "for 循环",
+    "q": "【选实现】任务：逐行打印 1 到 10 里的偶数。哪段代码能做到？",
+    "opts": [
+      "for i in range(1, 11):\n    print(i * 2)",
+      "for i in range(2, 10, 2):\n    print(i)",
+      "for i in range(1, 11, 2):\n    print(i)",
+      "for i in range(2, 11, 2):\n    print(i)"
+    ],
+    "ans": 3,
+    "doc": "从 2 开始、步长 2、包含 10"
+  },
+  {
+    "m": "L6",
+    "kind": "concept",
+    "tag": "range",
+    "q": "关于 range(1, 10)，下面哪个说法正确？",
+    "opts": [
+      "包含 1 到 10",
+      "包含 1 到 9，不包含 10",
+      "从 0 开始数到 10",
+      "一共产生 10 个数"
+    ],
+    "ans": 1,
+    "doc": "左闭右开：含头不含尾"
+  },
+  {
+    "m": "L7",
+    "kind": "read",
+    "tag": "while 循环",
+    "q": "运行这段代码，屏幕依次显示什么？\ni = 1\nwhile i <= 3:\n    print(i)\n    i = i + 1",
+    "opts": [
+      "1、2、3、4",
+      "1、2、3",
+      "2、3",
+      "一直打印停不下来"
+    ],
+    "ans": 1,
+    "doc": "i 数到 4 时条件不再成立"
+  },
+  {
+    "m": "L7",
+    "kind": "read",
+    "tag": "break/continue",
+    "q": "这段程序在用户输入什么时会停下来？\nwhile True:\n    s = input(\"输入 q 退出：\")\n    if s == \"q\":\n        break",
+    "opts": [
+      "输入任何内容都会停",
+      "永远不会停",
+      "输入空格时",
+      "输入 q 时"
+    ],
+    "ans": 3,
+    "doc": "break 直接结束整个循环"
+  },
+  {
+    "m": "L7",
+    "kind": "blank",
+    "tag": "while 循环",
+    "q": "要让用户一直猜下去直到猜中，横线处应填？\nwhile guess ____ target:\n    guess = int(input(\"再猜：\"))",
+    "opts": [
+      "!=",
+      "==",
+      "=",
+      ">"
+    ],
+    "ans": 0,
+    "doc": "不相等就继续猜"
+  },
+  {
+    "m": "L7",
+    "kind": "blank",
+    "tag": "while 循环",
+    "q": "要让循环数到 3 就停，横线处应填？\ni = 1\nwhile i <= 3:\n    print(i)\n    i = ____",
+    "opts": [
+      "i",
+      "0",
+      "i + 1",
+      "i - 1"
+    ],
+    "ans": 2,
+    "doc": "每轮加 1，否则死循环"
+  },
+  {
+    "m": "L7",
+    "kind": "bug",
+    "tag": "while 循环",
+    "q": "下面的代码运行时一直循环停不下来，问题出在哪？\ni = 1\nwhile i <= 3:\n    print(i)",
+    "opts": [
+      "print 不能写在 while 里",
+      "循环里没有让 i 变大，条件永远成立",
+      "i 的初始值不能是 1",
+      "while 后面不能写 <="
+    ],
+    "ans": 1,
+    "doc": "循环变量必须更新"
+  },
+  {
+    "m": "L7",
+    "kind": "bug",
+    "tag": "break/continue",
+    "q": "下面的代码想猜中 7 就停下，结果猜中了还继续循环，问题出在哪？\ntarget = 7\nwhile True:\n    guess = int(input())\n    if guess == target:\n        continue",
+    "opts": [
+      "print 不能写在 if 里",
+      "target 不能写死",
+      "猜中后应该用 break 结束循环，continue 会继续循环",
+      "while 后面不能写 True"
+    ],
+    "ans": 2,
+    "doc": "continue 只跳过本次，break 才结束循环"
+  },
+  {
+    "m": "L7",
+    "kind": "pick",
+    "tag": "while 循环",
+    "q": "【选实现】任务：答案是 7，让用户反复输入，猜中后输出 猜对了 并停下。哪段代码能做到？",
+    "opts": [
+      "while True:\n    guess = int(input())\n    if guess == 7: break\nprint(\"猜对了\")",
+      "while True:\n    guess = int(input())\n    if guess == 7: continue\nprint(\"猜对了\")",
+      "guess = int(input())\nif guess == 7:\n    print(\"猜对了\")",
+      "while guess != 7:\n    guess = int(input())\nprint(\"猜对了\")"
+    ],
+    "ans": 0,
+    "doc": "while True + break 最直观；第三项只猜一次，第四项 guess 未定义"
+  },
+  {
+    "m": "L7",
+    "kind": "concept",
+    "tag": "while 循环",
+    "q": "while 循环和 for 循环的区别，下面哪个说法正确？",
+    "opts": [
+      "while 只能循环 3 次",
+      "for 循环一定比 while 慢",
+      "while 里不能写 input",
+      "while 适合不知道要循环几次的场景"
+    ],
+    "ans": 3,
+    "doc": "次数不确定用 while，次数固定用 for"
+  },
+  {
+    "m": "L8",
+    "kind": "read",
+    "tag": "for 循环",
+    "q": "运行这段代码，屏幕显示什么？\ntotal = 0\nfor s in [80, 90, 70]:\n    total = total + s\nprint(total)",
+    "opts": [
+      "80",
+      "0",
+      "240",
+      "[80, 90, 70]"
+    ],
+    "ans": 2,
+    "doc": "三科累加得 240"
+  },
+  {
+    "m": "L8",
+    "kind": "read",
+    "tag": "列表",
+    "q": "运行这段代码，屏幕显示什么？\nscores = [60, 70, 80]\nprint(len(scores))",
+    "opts": [
+      "3",
+      "60",
+      "80",
+      "210"
+    ],
+    "ans": 0,
+    "doc": "len 数元素个数"
+  },
+  {
+    "m": "L8",
+    "kind": "blank",
+    "tag": "数值与运算符",
+    "q": "要把每次的成绩累加进总分，横线处应填？\ntotal = 0\nfor s in scores:\n    total = total + ____",
+    "opts": [
+      "total",
+      "0",
+      "scores",
+      "s"
+    ],
+    "ans": 3,
+    "doc": "把当前这一科 s 加进 total"
+  },
+  {
+    "m": "L8",
+    "kind": "blank",
+    "tag": "for 循环",
+    "q": "要统计及格人数，横线处应填？\ncount = 0\nfor s in scores:\n    if s >= 60:\n        count = count + ____",
+    "opts": [
+      "s",
+      "1",
+      "count",
+      "60"
+    ],
+    "ans": 1,
+    "doc": "每命中一个就加 1"
+  },
+  {
+    "m": "L8",
+    "kind": "bug",
+    "tag": "for 循环",
+    "q": "下面的代码想求总分，结果只输出了最后一科，问题出在哪？\nscores = [80, 90, 70]\nfor s in scores:\n    total = 0\n    total = total + s\nprint(total)",
+    "opts": [
+      "total = 0 写在循环里，每轮都被清零",
+      "print 不能写在 for 外面",
+      "scores 不能是列表",
+      "total 不能和 s 相加"
+    ],
+    "ans": 0,
+    "doc": "累加器要在循环前初始化"
+  },
+  {
+    "m": "L8",
+    "kind": "bug",
+    "tag": "数值与运算符",
+    "q": "下面的代码想算总分，运行时却报错，问题出在哪？\ntotal = \"0\"\nfor s in [80, 90]:\n    total = total + s",
+    "opts": [
+      "for 不能遍历列表",
+      "90 后面少了一个数",
+      "total 初始值是字符串，不能和整数相加",
+      "print 忘记写了"
+    ],
+    "ans": 2,
+    "doc": "累加器初始值要是数字 0"
+  },
+  {
+    "m": "L8",
+    "kind": "pick",
+    "tag": "for 循环",
+    "q": "【选实现】任务：求 scores 列表的平均分并输出。哪段代码能做到？",
+    "opts": [
+      "total = 0\nfor s in scores:\n    total = s\nprint(total / len(scores))",
+      "total = 0\nfor s in scores:\n    total = total + s\nprint(total)",
+      "print(sum / len(scores))",
+      "total = 0\nfor s in scores:\n    total = total + s\nprint(total / len(scores))"
+    ],
+    "ans": 3,
+    "doc": "先累加再除以个数；sum 是内置函数名不能直接当变量"
+  },
+  {
+    "m": "L8",
+    "kind": "concept",
+    "tag": "for 循环",
+    "q": "累加器 total = 0 为什么要写在循环前面？",
+    "opts": [
+      "写在循环前代码更好看",
+      "写进循环里每轮都会清零，累加就没意义了",
+      "这是语法规定，不写会报错",
+      "写在前面 print 才能用"
+    ],
+    "ans": 1,
+    "doc": "初始化只做一次"
+  },
+  {
+    "m": "L9",
+    "kind": "read",
+    "tag": "列表",
+    "q": "运行这段代码，屏幕显示什么？\ntodos = [\"写作业\", \"跑步\"]\ntodos.append(\"买牛奶\")\nprint(len(todos))",
+    "opts": [
+      "3",
+      "2",
+      "买牛奶",
+      "报错"
+    ],
+    "ans": 0,
+    "doc": "append 后变 3 项"
+  },
+  {
+    "m": "L9",
+    "kind": "read",
+    "tag": "列表",
+    "q": "运行这段代码，屏幕显示什么？\ntodos = [\"写作业\", \"跑步\"]\nprint(todos[0])",
+    "opts": [
+      "跑步",
+      "todos",
+      "0",
+      "写作业"
+    ],
+    "ans": 3,
+    "doc": "下标 0 是第一项"
+  },
+  {
+    "m": "L9",
+    "kind": "blank",
+    "tag": "列表",
+    "q": "要在清单末尾加一项，横线处应填？\ntodos.____(\"买牛奶\")",
+    "opts": [
+      "add",
+      "insert",
+      "append",
+      "push"
+    ],
+    "ans": 2,
+    "doc": "列表用 append 追加"
+  },
+  {
+    "m": "L9",
+    "kind": "blank",
+    "tag": "列表",
+    "q": "要打印清单的最后一项，横线处应填？\nprint(todos[____])",
+    "opts": [
+      "len(todos)",
+      "len(todos) - 1",
+      "0",
+      "last"
+    ],
+    "ans": 1,
+    "doc": "下标从 0 开始，最后一项是 len-1"
+  },
+  {
+    "m": "L9",
+    "kind": "bug",
+    "tag": "列表",
+    "q": "下面的代码想打印第三项，运行时却报错，问题出在哪？\ntodos = [\"写作业\", \"跑步\"]\nprint(todos[2])",
+    "opts": [
+      "列表只有 2 项，下标 2 越界了",
+      "print 不能打印列表元素",
+      "下标不能用数字",
+      "todos 拼写错了"
+    ],
+    "ans": 0,
+    "doc": "下标最大是 len-1"
+  },
+  {
+    "m": "L9",
+    "kind": "bug",
+    "tag": "列表",
+    "q": "下面的代码想给清单加一项，运行时却报错，问题出在哪？\ntodos = \"写作业\"\ntodos.append(\"跑步\")",
+    "opts": [
+      "append 里不能写中文",
+      "todos 名字太长",
+      "应该先 print 再 append",
+      "todos 是字符串，字符串没有 append 方法"
+    ],
+    "ans": 3,
+    "doc": "先建成列表才能 append"
+  },
+  {
+    "m": "L9",
+    "kind": "pick",
+    "tag": "列表",
+    "q": "【选实现】任务：建一个空清单，加入 学习 和 运动，然后逐行打印。哪段代码能做到？",
+    "opts": [
+      "todos = []\nappend(\"学习\")\nappend(\"运动\")\nprint(todos)",
+      "todos = []\ntodos.append(\"学习\")\ntodos.append(\"运动\")\nfor t in todos: print(t)",
+      "todos = [\"学习\", \"运动\"]\nfor t in todos: print(todos)",
+      "todos = []\ntodos.append(\"学习\", \"运动\")\nprint(todos)"
+    ],
+    "ans": 1,
+    "doc": "append 是列表的方法，一次只能加一个"
+  },
+  {
+    "m": "L9",
+    "kind": "concept",
+    "tag": "列表",
+    "q": "关于列表下标，下面哪个说法正确？",
+    "opts": [
+      "第一项的下标是 1",
+      "下标随便写也不会报错",
+      "第一项的下标是 0",
+      "len(todos) 是最后一项的下标"
+    ],
+    "ans": 2,
+    "doc": "Python 下标从 0 开始"
+  },
+  {
+    "m": "L10",
+    "kind": "read",
+    "tag": "列表",
+    "q": "运行这段代码，屏幕显示什么？\nscores = [55, 70, 90]\ncount = 0\nfor s in scores:\n    if s >= 60:\n        count = count + 1\nprint(count)",
+    "opts": [
+      "3",
+      "2",
+      "1",
+      "70"
+    ],
+    "ans": 1,
+    "doc": "70 和 90 两个及格"
+  },
+  {
+    "m": "L10",
+    "kind": "read",
+    "tag": "排序",
+    "q": "运行这段代码，屏幕显示什么？\nscores = [70, 90, 55]\nscores.sort()\nprint(scores[-1])",
+    "opts": [
+      "90",
+      "55",
+      "70",
+      "[55, 70, 90]"
+    ],
+    "ans": 0,
+    "doc": "排序后最后一个最大"
+  },
+  {
+    "m": "L10",
+    "kind": "blank",
+    "tag": "列表",
+    "q": "要把及格人数加一，横线处应填？\nif s >= 60:\n    count ____ 1",
+    "opts": [
+      "=+",
+      "==",
+      "=",
+      "+="
+    ],
+    "ans": 3,
+    "doc": "+= 是 count = count + 1 的简写"
+  },
+  {
+    "m": "L10",
+    "kind": "blank",
+    "tag": "排序",
+    "q": "要得到一份从小到大排列的新列表且不改动原列表，横线处应填？\nordered = ____(scores)",
+    "opts": [
+      "sort",
+      "list",
+      "sorted",
+      "len"
+    ],
+    "ans": 2,
+    "doc": "sorted 返回新列表"
+  },
+  {
+    "m": "L10",
+    "kind": "bug",
+    "tag": "列表",
+    "q": "下面的代码想删掉所有不及格成绩，结果漏掉了一些，问题出在哪？\nscores = [55, 58, 90]\nfor s in scores:\n    if s < 60:\n        scores.remove(s)\nprint(scores)",
+    "opts": [
+      "remove 只能删数字",
+      "一边遍历一边删除，后面的元素会错位漏判",
+      "if 里不能写 60",
+      "print 导致删除失败"
+    ],
+    "ans": 1,
+    "doc": "遍历时不要改原列表，可以先建新列表"
+  },
+  {
+    "m": "L10",
+    "kind": "bug",
+    "tag": "排序",
+    "q": "下面的代码想打印排序后的成绩，却输出了 None，问题出在哪？\nscores = [70, 55, 90]\nprint(scores.sort())",
+    "opts": [
+      "sort 是原地排序，返回 None，不能放进 print",
+      "print 不能打印列表",
+      "scores 必须先转成字符串",
+      "sort 后面不能加括号"
+    ],
+    "ans": 0,
+    "doc": "先 sort() 再 print(scores)"
+  },
+  {
+    "m": "L10",
+    "kind": "pick",
+    "tag": "列表",
+    "q": "【选实现】任务：统计 scores 里有多少人及格（60 及以上）。哪段代码能做到？",
+    "opts": [
+      "count = 0\nfor s in scores:\n    if s > 60: count += 1\nprint(count)",
+      "count = 0\nif scores >= 60:\n    count += 1\nprint(count)",
+      "count = 0\nfor s in scores:\n    if s >= 60: count += 1\nprint(count)",
+      "for s in scores:\n    count = 0\n    if s >= 60: count += 1\nprint(count)"
+    ],
+    "ans": 2,
+    "doc": "计数器在循环前清零，条件用 >="
+  },
+  {
+    "m": "L10",
+    "kind": "concept",
+    "tag": "排序",
+    "q": "sort 和 sorted 的区别，下面哪个说法正确？",
+    "opts": [
+      "两个都会改动原列表",
+      "两个都返回新列表",
+      "sorted 只能排字符串",
+      "sort 改动原列表，sorted 返回新列表"
+    ],
+    "ans": 3,
+    "doc": "sort 原地，sorted 出新列表"
+  },
+  {
+    "m": "L11",
+    "kind": "read",
+    "tag": "字典",
+    "q": "运行这段代码，屏幕显示什么？\nphone = {\"小明\": \"13800000000\"}\nprint(phone[\"小明\"])",
+    "opts": [
+      "13800000000",
+      "小明",
+      "phone",
+      "报错"
+    ],
+    "ans": 0,
+    "doc": "按键取到对应的值"
+  },
+  {
+    "m": "L11",
+    "kind": "read",
+    "tag": "字典",
+    "q": "运行这段代码，屏幕显示什么？\nphone = {\"小明\": \"13800000000\"}\nprint(phone.get(\"小红\", \"查无此人\"))",
+    "opts": [
+      "None",
+      "报错",
+      "查无此人",
+      "13800000000"
+    ],
+    "ans": 2,
+    "doc": "get 的第二个参数是缺省值"
+  },
+  {
+    "m": "L11",
+    "kind": "blank",
+    "tag": "字典",
+    "q": "要把单词 w 的计数加一，横线处应填？\ncount[w] = count.get(w, 0) + ____",
+    "opts": [
+      "0",
+      "1",
+      "w",
+      "count"
+    ],
+    "ans": 1,
+    "doc": "没见过就当作 0，再加 1"
+  },
+  {
+    "m": "L11",
+    "kind": "blank",
+    "tag": "字典",
+    "q": "要同时取出通讯录里的姓名和电话，横线处应填？\nfor name, tel in phone.____():\n    print(name, tel)",
+    "opts": [
+      "keys",
+      "values",
+      "get",
+      "items"
+    ],
+    "ans": 3,
+    "doc": "items 同时给出键和值"
+  },
+  {
+    "m": "L11",
+    "kind": "bug",
+    "tag": "字典",
+    "q": "下面的代码想给新单词计数，运行时却报 KeyError，问题出在哪？\ncount = {}\nw = \"apple\"\ncount[w] = count[w] + 1",
+    "opts": [
+      "w 还不存在于字典里，要先 count.get(w, 0)",
+      "字典不能用字符串做键",
+      "+ 1 写错了",
+      "count 不能是空字典"
+    ],
+    "ans": 0,
+    "doc": "键不存在时直接取会 KeyError"
+  },
+  {
+    "m": "L11",
+    "kind": "bug",
+    "tag": "字典",
+    "q": "下面的代码想查小明的电话，运行时却报错，问题出在哪？\nphone = {\"小明\": \"13800000000\"}\nprint(phone(\"小明\"))",
+    "opts": [
+      "电话号码要加区号",
+      "print 不能查字典",
+      "查字典要用方括号 phone[\"小明\"]，不是圆括号",
+      "键名不能写中文"
+    ],
+    "ans": 2,
+    "doc": "方括号取值，圆括号是调用函数"
+  },
+  {
+    "m": "L11",
+    "kind": "pick",
+    "tag": "字典",
+    "q": "【选实现】任务：统计 words 列表里每个单词出现的次数。哪段代码能做到？",
+    "opts": [
+      "count = {}\nfor w in words:\n    count[w] = 1",
+      "count = {}\nfor w in words:\n    count[w] = count.get(w, 0) + 1",
+      "count = {}\nfor w in words:\n    count[w] = count[w] + 1",
+      "count = []\nfor w in words:\n    count[w] = count.get(w, 0) + 1"
+    ],
+    "ans": 1,
+    "doc": "用 get(w, 0) 处理第一次出现"
+  },
+  {
+    "m": "L11",
+    "kind": "concept",
+    "tag": "字典",
+    "q": "字典和列表的区别，下面哪个说法正确？",
+    "opts": [
+      "字典只能存数字",
+      "列表里的元素必须有名字",
+      "字典会自动按值排序",
+      "字典按键存取，列表按下标存取"
+    ],
+    "ans": 3,
+    "doc": "键值对 vs 顺序存储"
+  },
+  {
+    "m": "L12",
+    "kind": "read",
+    "tag": "字典",
+    "q": "运行这段代码，屏幕显示什么？\nstudents = [{\"name\": \"小明\", \"score\": 90}, {\"name\": \"小红\", \"score\": 55}]\nprint(students[0][\"name\"])",
+    "opts": [
+      "90",
+      "小明",
+      "小红",
+      "score"
+    ],
+    "ans": 1,
+    "doc": "先取下标 0 的字典，再取 name 键"
+  },
+  {
+    "m": "L12",
+    "kind": "read",
+    "tag": "列表",
+    "q": "运行这段代码，屏幕显示什么？\nstudents = [{\"name\": \"小明\"}, {\"name\": \"小红\"}, {\"name\": \"小刚\"}]\nprint(len(students))",
+    "opts": [
+      "3",
+      "2",
+      "小明",
+      "报错"
+    ],
+    "ans": 0,
+    "doc": "列表里有 3 个字典"
+  },
+  {
+    "m": "L12",
+    "kind": "blank",
+    "tag": "字典",
+    "q": "要判断这位同学是否及格，横线处应填？\nif st[\"____\"] >= 60:\n    print(st[\"name\"])",
+    "opts": [
+      "name",
+      "st",
+      "score",
+      "60"
+    ],
+    "ans": 2,
+    "doc": "成绩存在 score 字段里"
+  },
+  {
+    "m": "L12",
+    "kind": "blank",
+    "tag": "列表",
+    "q": "要把及格同学的姓名收进结果列表，横线处应填？\npassed = []\nfor st in students:\n    if st[\"score\"] >= 60:\n        passed.____(st[\"name\"])",
+    "opts": [
+      "add",
+      "insert",
+      "get",
+      "append"
+    ],
+    "ans": 3,
+    "doc": "往列表里加元素用 append"
+  },
+  {
+    "m": "L12",
+    "kind": "bug",
+    "tag": "字典",
+    "q": "下面的代码想打印成绩，运行时却报错，问题出在哪？\nst = {\"name\": \"小明\", \"score\": 90}\nprint(st.score)",
+    "opts": [
+      "score 要改成中文",
+      "字典要用方括号 st[\"score\"]，不能用点",
+      "print 不能打印字典",
+      "90 要加引号"
+    ],
+    "ans": 1,
+    "doc": "字典不是对象属性，用键取值"
+  },
+  {
+    "m": "L12",
+    "kind": "bug",
+    "tag": "列表",
+    "q": "下面的代码想取第一位同学的姓名，运行时却报错，问题出在哪？\nstudents = [{\"name\": \"小明\"}]\nprint(students[\"name\"])",
+    "opts": [
+      "列表要用下标 students[0][\"name\"]，不能用字符串做下标",
+      "name 拼写错误",
+      "列表里不能放字典",
+      "print 里不能用双引号"
+    ],
+    "ans": 0,
+    "doc": "先按下标取字典，再按键取字段"
+  },
+  {
+    "m": "L12",
+    "kind": "pick",
+    "tag": "列表",
+    "q": "【选实现】任务：找出 students 里最高分同学的姓名并输出。哪段代码能做到？",
+    "opts": [
+      "for st in students:\n    print(st[\"name\"])",
+      "best = students[0]\nfor st in students:\n    if st[\"score\"] > best: best = st\nprint(best)",
+      "best = 0\nfor st in students:\n    if st[\"score\"] > best: best = st[\"score\"]\nprint(best)",
+      "best = students[0]\nfor st in students:\n    if st[\"score\"] > best[\"score\"]: best = st\nprint(best[\"name\"])"
+    ],
+    "ans": 3,
+    "doc": "先假设第一个最高，再逐个比较更新"
+  },
+  {
+    "m": "L12",
+    "kind": "concept",
+    "tag": "字典",
+    "q": "用 列表套字典 存一张学生成绩表，好处是什么？",
+    "opts": [
+      "这样存数据最省内存",
+      "列表会自动帮忙排序",
+      "每一行是一个字典，按字段名存取，结构清楚",
+      "字典里的键可以重复"
+    ],
+    "ans": 2,
+    "doc": "像表格：行是字典，列是字段"
+  },
+  {
+    "m": "L13",
+    "kind": "read",
+    "tag": "函数定义",
+    "q": "运行这段代码，屏幕显示什么？\ndef hello():\n    print(\"你好\")\nhello()\nhello()",
+    "opts": [
+      "你好 打印一次",
+      "什么都不显示",
+      "你好 打印两次",
+      "报错"
+    ],
+    "ans": 2,
+    "doc": "调用几次就执行几次"
+  },
+  {
+    "m": "L13",
+    "kind": "read",
+    "tag": "返回值",
+    "q": "运行这段代码，屏幕显示什么？\ndef add(a, b):\n    return a + b\nprint(add(3, 4))",
+    "opts": [
+      "7",
+      "34",
+      "a + b",
+      "None"
+    ],
+    "ans": 0,
+    "doc": "return 把 3+4 的结果交回去"
+  },
+  {
+    "m": "L13",
+    "kind": "blank",
+    "tag": "函数定义",
+    "q": "要让函数返回列表的平均分，横线处应填？\ndef average(nums):\n    return ____",
+    "opts": [
+      "nums / len(nums)",
+      "sum(nums) / len(nums)",
+      "sum(nums)",
+      "average(nums)"
+    ],
+    "ans": 1,
+    "doc": "总分除以个数"
+  },
+  {
+    "m": "L13",
+    "kind": "blank",
+    "tag": "函数定义",
+    "q": "要定义一个叫 is_pass 的函数，横线处应填？\n____ is_pass(score):\n    return score >= 60",
+    "opts": [
+      "function",
+      "func",
+      "define",
+      "def"
+    ],
+    "ans": 3,
+    "doc": "Python 用 def 定义函数"
+  },
+  {
+    "m": "L13",
+    "kind": "bug",
+    "tag": "函数定义",
+    "q": "下面的代码定义了函数却没有输出，问题出在哪？\ndef hello():\n    print(\"你好\")",
+    "opts": [
+      "只定义了函数，从来没有调用 hello()",
+      "print 不能写在函数里",
+      "def 后面不能写括号",
+      "函数名不能叫 hello"
+    ],
+    "ans": 0,
+    "doc": "定义不等于执行，要调用一次"
+  },
+  {
+    "m": "L13",
+    "kind": "bug",
+    "tag": "函数定义",
+    "q": "下面的代码运行时提示缩进错误，问题出在哪？\ndef hello():\nprint(\"你好\")",
+    "opts": [
+      "def 后面少了冒号",
+      "函数体的 print 必须缩进",
+      "print 要写两遍",
+      "函数里不能写中文"
+    ],
+    "ans": 1,
+    "doc": "函数体属于 def，要缩进"
+  },
+  {
+    "m": "L13",
+    "kind": "pick",
+    "tag": "函数定义",
+    "q": "【选实现】任务：写一个函数 is_pass(score)，60 分及以上返回 True，否则返回 False。哪段代码能做到？",
+    "opts": [
+      "def is_pass(score):\n    print(score >= 60)",
+      "def is_pass():\n    return score >= 60",
+      "def is_pass(score)\n    return score >= 60",
+      "def is_pass(score):\n    return score >= 60"
+    ],
+    "ans": 3,
+    "doc": "要有参数、冒号、缩进和 return"
+  },
+  {
+    "m": "L13",
+    "kind": "concept",
+    "tag": "返回值",
+    "q": "关于函数，下面哪个说法正确？",
+    "opts": [
+      "函数一定义就会自动执行",
+      "函数里不能用 print",
+      "函数定义后必须调用才会执行里面的代码",
+      "一个程序只能定义一个函数"
+    ],
+    "ans": 2,
+    "doc": "def 只是声明，调用才执行"
+  },
+  {
+    "m": "L14",
+    "kind": "read",
+    "tag": "返回值",
+    "q": "运行这段代码，屏幕显示什么？\ndef f():\n    print(\"算完了\")\nresult = f()\nprint(result)",
+    "opts": [
+      "算完了 然后 算完了",
+      "算完了 然后 None",
+      "只有 None",
+      "报错"
+    ],
+    "ans": 1,
+    "doc": "没有 return，默认返回 None"
+  },
+  {
+    "m": "L14",
+    "kind": "read",
+    "tag": "作用域",
+    "q": "运行这段代码，屏幕显示什么？\nx = 10\ndef f():\n    x = 99\nf()\nprint(x)",
+    "opts": [
+      "10",
+      "99",
+      "报错",
+      "None"
+    ],
+    "ans": 0,
+    "doc": "函数里的 x 是局部变量，不影响外面"
+  },
+  {
+    "m": "L14",
+    "kind": "blank",
+    "tag": "返回值",
+    "q": "要把平均分交回调用处，横线处应填？\ndef average(nums):\n    ____ sum(nums) / len(nums)",
+    "opts": [
+      "print",
+      "output",
+      "yield",
+      "return"
+    ],
+    "ans": 3,
+    "doc": "return 把结果交给调用处"
+  },
+  {
+    "m": "L14",
+    "kind": "blank",
+    "tag": "返回值",
+    "q": "要接住 average 算出的结果，横线处应填？\navg = ____(scores)\nprint(avg)",
+    "opts": [
+      "call",
+      "def",
+      "average",
+      "return"
+    ],
+    "ans": 2,
+    "doc": "写函数名加括号就是调用"
+  },
+  {
+    "m": "L14",
+    "kind": "bug",
+    "tag": "返回值",
+    "q": "下面的代码想拿到平均分，却拿到了 None，问题出在哪？\ndef average(nums):\n    result = sum(nums) / len(nums)\navg = average([80, 90])",
+    "opts": [
+      "函数里只算了值却没有 return，默认返回 None",
+      "nums 不能是列表",
+      "average 名字太长",
+      "print 少写了"
+    ],
+    "ans": 0,
+    "doc": "算出来还要 return 出去"
+  },
+  {
+    "m": "L14",
+    "kind": "bug",
+    "tag": "作用域",
+    "q": "下面的代码想在函数外拿到 avg，运行时却报 NameError，问题出在哪？\ndef average(nums):\n    avg = sum(nums) / len(nums)\n    return avg\naverage([80, 90])\nprint(avg)",
+    "opts": [
+      "函数不能返回小数",
+      "avg 是函数里的局部变量，外面要用 avg = average(...) 接住返回值",
+      "nums 拼写错了",
+      "print 要写在函数里面"
+    ],
+    "ans": 1,
+    "doc": "局部变量出了函数就不存在"
+  },
+  {
+    "m": "L14",
+    "kind": "pick",
+    "tag": "返回值",
+    "q": "【选实现】任务：用 average 算出平均分，再用 is_pass 判断，及格就输出 班级及格。哪段代码能做到？",
+    "opts": [
+      "average(scores)\nif is_pass:\n    print(\"班级及格\")",
+      "avg = average\nif is_pass(avg):\n    print(\"班级及格\")",
+      "avg = average(scores)\nif is_pass(avg):\n    print(\"班级及格\")",
+      "if is_pass(average):\n    print(\"班级及格\")"
+    ],
+    "ans": 2,
+    "doc": "先接住返回值，再传给下一个函数"
+  },
+  {
+    "m": "L14",
+    "kind": "concept",
+    "tag": "返回值",
+    "q": "print 和 return 的区别，下面哪个说法正确？",
+    "opts": [
+      "两个作用完全一样",
+      "return 会把内容打印出来",
+      "print 可以把值传给别的函数",
+      "print 只是显示到屏幕，return 才把值交回调用处继续用"
+    ],
+    "ans": 3,
+    "doc": "显示不等于返回"
+  },
+  {
+    "m": "L15",
+    "kind": "read",
+    "tag": "文件读写",
+    "q": "这段代码运行后，文件 a.txt 里的内容是什么？\nwith open(\"a.txt\", \"w\") as f:\n    f.write(\"买牛奶\")",
+    "opts": [
+      "什么都不显示",
+      "报错",
+      "买牛奶",
+      "a.txt"
+    ],
+    "ans": 2,
+    "doc": "w 模式把字符串写进文件"
+  },
+  {
+    "m": "L15",
+    "kind": "read",
+    "tag": "异常类型",
+    "q": "运行下面这行代码会发生什么？\nn = int(\"abc\")",
+    "opts": [
+      "报 ValueError",
+      "得到 0",
+      "得到 abc",
+      "什么都不发生"
+    ],
+    "ans": 0,
+    "doc": "abc 不是合法整数"
+  },
+  {
+    "m": "L15",
+    "kind": "blank",
+    "tag": "文件模式",
+    "q": "要把清单写进文件（覆盖旧内容），横线处应填？\nwith open(\"todos.txt\", \"____\") as f:\n    f.write(\"买牛奶\")",
+    "opts": [
+      "r",
+      "w",
+      "a",
+      "rw"
+    ],
+    "ans": 1,
+    "doc": "w 表示写入并覆盖"
+  },
+  {
+    "m": "L15",
+    "kind": "blank",
+    "tag": "try/except/else/finally",
+    "q": "要让用户输入不是数字时程序不崩溃，横线处应填？\ntry:\n    n = int(input())\nexcept ____:\n    print(\"请输入数字\")",
+    "opts": [
+      "KeyError",
+      "NameError",
+      "Error",
+      "ValueError"
+    ],
+    "ans": 3,
+    "doc": "int 转换失败抛 ValueError"
+  },
+  {
+    "m": "L15",
+    "kind": "bug",
+    "tag": "文件读写",
+    "q": "下面的代码想判断文件第一行是不是 买牛奶，结果总是 False，问题出在哪？\nwith open(\"todos.txt\") as f:\n    line = f.readline()\nprint(line == \"买牛奶\")",
+    "opts": [
+      "读出来的行末尾带着换行符，要先 line.strip() 再比较",
+      "== 不能比较中文",
+      "open 后面少了模式",
+      "readline 要写成 read"
+    ],
+    "ans": 0,
+    "doc": "行尾的 \\n 让比较失败"
+  },
+  {
+    "m": "L15",
+    "kind": "bug",
+    "tag": "文件模式",
+    "q": "下面的代码想往文件里写内容，运行时却报错，问题出在哪？\nwith open(\"todos.txt\", \"r\") as f:\n    f.write(\"买牛奶\")",
+    "opts": [
+      "write 不能写中文",
+      "open 拼写错误",
+      "\"r\" 是只读模式，写入要用 \"w\"",
+      "文件必须先手动关闭"
+    ],
+    "ans": 2,
+    "doc": "模式决定能读还是能写"
+  },
+  {
+    "m": "L15",
+    "kind": "pick",
+    "tag": "文件读写",
+    "q": "【选实现】任务：把 todos 列表逐行写入 todos.txt。哪段代码能做到？",
+    "opts": [
+      "with open(\"todos.txt\", \"r\") as f:\n    for t in todos:\n        f.write(t)",
+      "with open(\"todos.txt\", \"w\") as f:\n    for t in todos:\n        f.write(t + \"\\n\")",
+      "open(\"todos.txt\")\nfor t in todos:\n    f.write(t)",
+      "with open(\"todos.txt\", \"w\") as f:\n    f.write(todos)"
+    ],
+    "ans": 1,
+    "doc": "w 模式 + 每行补换行；write 不能直接写列表"
+  },
+  {
+    "m": "L15",
+    "kind": "concept",
+    "tag": "异常类型",
+    "q": "try/except 的作用是什么？",
+    "opts": [
+      "让代码跑得更快",
+      "自动修好所有错误",
+      "只在写文件时才需要",
+      "出错时执行 except 里的代码，程序不直接崩溃"
+    ],
+    "ans": 3,
+    "doc": "把可预期的错误接住"
+  },
+  {
+    "m": "L16",
+    "kind": "read",
+    "tag": "列表",
+    "q": "运行这段代码，屏幕显示什么？\ntodos = [{\"title\": \"写作业\", \"done\": False}, {\"title\": \"买牛奶\", \"done\": True}]\nprint(todos[1][\"title\"])",
+    "opts": [
+      "写作业",
+      "买牛奶",
+      "True",
+      "1"
+    ],
+    "ans": 1,
+    "doc": "先取下标 1，再取 title"
+  },
+  {
+    "m": "L16",
+    "kind": "read",
+    "tag": "while 循环",
+    "q": "这段菜单代码在用户输入什么时会退出？\nwhile True:\n    cmd = input(\"命令：\")\n    if cmd == \"q\":\n        break",
+    "opts": [
+      "输入 q 时",
+      "输入任何命令都会退出",
+      "循环 10 次后自动退出",
+      "输入空命令时"
+    ],
+    "ans": 0,
+    "doc": "break 结束菜单循环"
+  },
+  {
+    "m": "L16",
+    "kind": "blank",
+    "tag": "字典",
+    "q": "要添加一条新待办，横线处应填？\ntodos.append({\"title\": title, \"____\": False})",
+    "opts": [
+      "title",
+      "todos",
+      "False",
+      "done"
+    ],
+    "ans": 3,
+    "doc": "新待办默认未完成"
+  },
+  {
+    "m": "L16",
+    "kind": "blank",
+    "tag": "break/continue",
+    "q": "要让用户输入 q 时退出菜单循环，横线处应填？\nif cmd == \"q\":\n    ____",
+    "opts": [
+      "continue",
+      "return",
+      "break",
+      "exit"
+    ],
+    "ans": 2,
+    "doc": "break 跳出 while"
+  },
+  {
+    "m": "L16",
+    "kind": "bug",
+    "tag": "列表",
+    "q": "下面的代码想删掉第 n 条待办，用户输入 99 时程序崩溃了，问题出在哪？\nn = int(input(\"删除第几条：\"))\ntodos.pop(n - 1)",
+    "opts": [
+      "没有判断 n 是否越界，pop(98) 会 IndexError",
+      "pop 不能删数字",
+      "int 转换多余",
+      "n - 1 写错了"
+    ],
+    "ans": 0,
+    "doc": "删之前要检查下标范围"
+  },
+  {
+    "m": "L16",
+    "kind": "bug",
+    "tag": "函数定义",
+    "q": "下面的 add_item 想把待办加进清单，运行后清单还是空的，问题出在哪？\ndef add_item(title):\n    new_todos = todos + [title]\nadd_item(\"写作业\")",
+    "opts": [
+      "title 要加引号",
+      "函数里造了一个新列表，应该用 todos.append(title)",
+      "def 后面少了冒号",
+      "add_item 不能被调用"
+    ],
+    "ans": 1,
+    "doc": "todos + [x] 生成新列表，原列表没变"
+  },
+  {
+    "m": "L16",
+    "kind": "pick",
+    "tag": "while 循环",
+    "q": "【选实现】任务：菜单循环：输入 a 添加，输入 q 退出。哪段代码能做到？",
+    "opts": [
+      "while True:\n    cmd = input()\n    if cmd == \"q\": continue\n    if cmd == \"a\": add_item()",
+      "cmd = input()\nwhile cmd != \"q\":\n    add_item()",
+      "while True:\n    cmd = input()\n    if cmd == \"q\": break\n    if cmd == \"a\": add_item()",
+      "for cmd in [\"a\", \"q\"]:\n    if cmd == \"q\": break"
+    ],
+    "ans": 2,
+    "doc": "循环里读命令，q 就 break"
+  },
+  {
+    "m": "L16",
+    "kind": "concept",
+    "tag": "列表",
+    "q": "设计待办程序的数据结构，下面哪种最合适？",
+    "opts": [
+      "只用一个大字符串",
+      "用 10 个独立变量",
+      "字典套字典套字典，层数越多越好",
+      "列表套字典：每条待办是 {标题, 是否完成}"
+    ],
+    "ans": 3,
+    "doc": "列表管顺序，字典管字段"
+  },
+  {
+    "m": "L17",
+    "kind": "read",
+    "tag": "字符串",
+    "q": "运行这段代码，屏幕显示什么？\ns = \"hello\"\nprint(s[1])",
+    "opts": [
+      "e",
+      "h",
+      "he",
+      "报错"
+    ],
+    "ans": 0,
+    "doc": "下标 1 是第二个字符"
+  },
+  {
+    "m": "L17",
+    "kind": "read",
+    "tag": "切片",
+    "q": "运行这段代码，屏幕显示什么？\ns = \"abcdef\"\nprint(s[1:4])",
+    "opts": [
+      "abc",
+      "abcd",
+      "bcd",
+      "bcde"
+    ],
+    "ans": 2,
+    "doc": "切片左闭右开：下标 1 到 3"
+  },
+  {
+    "m": "L17",
+    "kind": "blank",
+    "tag": "切片",
+    "q": "要把字符串倒过来，横线处应填？\ns = \"abc\"\nprint(s[____])",
+    "opts": [
+      "0:2",
+      "1:",
+      "::",
+      "::-1"
+    ],
+    "ans": 3,
+    "doc": "步长 -1 表示从后往前走"
+  },
+  {
+    "m": "L17",
+    "kind": "blank",
+    "tag": "字符串",
+    "q": "要去掉用户输入两端的空格，横线处应填？\nname = input().____()",
+    "opts": [
+      "trim",
+      "strip",
+      "cut",
+      "clean"
+    ],
+    "ans": 1,
+    "doc": "Python 里叫 strip"
+  },
+  {
+    "m": "L17",
+    "kind": "bug",
+    "tag": "字符串",
+    "q": "下面的代码想把首字母改成大写，运行时却报错，问题出在哪？\ns = \"hello\"\ns[0] = \"H\"\nprint(s)",
+    "opts": [
+      "下标 0 不能用来改",
+      "要写成 s(0)",
+      "字符串不能改单个字符，只能生成新串",
+      "hello 太短了"
+    ],
+    "ans": 2,
+    "doc": "字符串不可变，可以 s = \"H\" + s[1:]"
+  },
+  {
+    "m": "L17",
+    "kind": "bug",
+    "tag": "字符串",
+    "q": "下面的代码想拼出一句话，运行时却报错，问题出在哪？\nage = 18\nprint(\"我今年\" + age + \"岁\")",
+    "opts": [
+      "age 是整数，要先 str(age) 再拼接",
+      "print 里不能写两个加号",
+      "字符串里不能写中文",
+      "18 要加引号"
+    ],
+    "ans": 0,
+    "doc": "字符串只能和字符串相加"
+  },
+  {
+    "m": "L17",
+    "kind": "pick",
+    "tag": "字符串",
+    "q": "【选实现】任务：文件名 name = \"report.pdf\"，取出后缀 pdf 并输出。哪段代码能做到？",
+    "opts": [
+      "name = \"report.pdf\"\nprint(name.split(\".\")[0])",
+      "name = \"report.pdf\"\nprint(name.split(\".\")[-1])",
+      "name = \"report.pdf\"\nprint(name[-3:0])",
+      "name = \"report.pdf\"\nprint(name.split(\".\")[2])"
+    ],
+    "ans": 1,
+    "doc": "split(\".\") 后取最后一段"
+  },
+  {
+    "m": "L17",
+    "kind": "concept",
+    "tag": "字符串",
+    "q": "关于字符串不可变，下面哪个说法正确？",
+    "opts": [
+      "s[0] = \"x\" 可以改首字符",
+      "字符串可以直接修改内容",
+      "replace 会把原字符串改掉",
+      "字符串的方法都返回新串，原串不变"
+    ],
+    "ans": 3,
+    "doc": "想改只能造一个新串"
+  },
+  {
+    "m": "L18",
+    "kind": "read",
+    "tag": "元组",
+    "q": "运行这段代码，屏幕显示什么？\nt = (10, 20, 30)\nprint(t[1])",
+    "opts": [
+      "10",
+      "20",
+      "30",
+      "报错"
+    ],
+    "ans": 1,
+    "doc": "元组和列表一样按下标取"
+  },
+  {
+    "m": "L18",
+    "kind": "read",
+    "tag": "解包",
+    "q": "运行这段代码，屏幕显示什么？\na, b = 1, 2\na, b = b, a\nprint(a, b)",
+    "opts": [
+      "2 1",
+      "1 2",
+      "1 1",
+      "报错"
+    ],
+    "ans": 0,
+    "doc": "a, b = b, a 直接交换两个变量"
+  },
+  {
+    "m": "L18",
+    "kind": "blank",
+    "tag": "集合",
+    "q": "要快速去掉列表里的重复项，横线处应填？\nnums = [1, 1, 2, 2, 3]\nunique = ____(nums)",
+    "opts": [
+      "list",
+      "dict",
+      "set",
+      "tuple"
+    ],
+    "ans": 2,
+    "doc": "set 自动去重"
+  },
+  {
+    "m": "L18",
+    "kind": "blank",
+    "tag": "推导式",
+    "q": "要生成每个数的两倍，横线处应填？\nnums = [1, 2, 3]\ndoubles = [____ for x in nums]",
+    "opts": [
+      "x",
+      "nums * 2",
+      "x + x + x",
+      "x * 2"
+    ],
+    "ans": 3,
+    "doc": "推导式左边写对每个元素做什么"
+  },
+  {
+    "m": "L18",
+    "kind": "bug",
+    "tag": "元组",
+    "q": "下面的代码想改元组的第一项，运行时却报错，问题出在哪？\nt = (1, 2)\nt[0] = 9",
+    "opts": [
+      "元组不能改元素，要改用列表",
+      "下标 0 越界了",
+      "9 要写成字符串",
+      "t 要先打印再改"
+    ],
+    "ans": 0,
+    "doc": "元组创建后内容就固定了"
+  },
+  {
+    "m": "L18",
+    "kind": "bug",
+    "tag": "集合",
+    "q": "下面的代码想把几组数放进集合，运行时却报错，问题出在哪？\ns = {[1, 2], [3]}",
+    "opts": [
+      "集合要加引号",
+      "列表不能放进集合，集合元素必须可哈希",
+      "集合里最多两个元素",
+      "要改用圆括号"
+    ],
+    "ans": 1,
+    "doc": "列表不可哈希，可换成元组"
+  },
+  {
+    "m": "L18",
+    "kind": "pick",
+    "tag": "推导式",
+    "q": "【选实现】任务：生成 [1, 2, 3] 的平方列表 [1, 4, 9] 并输出。哪段代码能做到？",
+    "opts": [
+      "nums = [1, 2, 3]\nprint([x*2 for x in nums])",
+      "nums = [1, 2, 3]\nsquares = []\nfor x in nums: squares + x*x",
+      "nums = [1, 2, 3]\nprint([x*x for x in nums if x > 1])",
+      "nums = [1, 2, 3]\nprint([x*x for x in nums])"
+    ],
+    "ans": 3,
+    "doc": "[表达式 for x in 列表]；+ 号不会把元素加进列表"
+  },
+  {
+    "m": "L18",
+    "kind": "concept",
+    "tag": "集合",
+    "q": "关于集合 set，下面哪个说法正确？",
+    "opts": [
+      "集合里的元素可以重复",
+      "集合可以按下标取元素",
+      "集合自动去重且没有顺序",
+      "集合一定比列表慢"
+    ],
+    "ans": 2,
+    "doc": "去重、无序、元素必须可哈希"
+  },
+  {
+    "m": "L19",
+    "kind": "read",
+    "tag": "参数与默认值",
+    "q": "运行这段代码，屏幕显示什么？\ndef f(x, y=2):\n    return x + y\nprint(f(3))",
+    "opts": [
+      "3",
+      "报错",
+      "5",
+      "2"
+    ],
+    "ans": 2,
+    "doc": "y 没传就用默认值 2"
+  },
+  {
+    "m": "L19",
+    "kind": "read",
+    "tag": "递归",
+    "q": "运行这段代码，屏幕依次显示什么？\ndef f(n):\n    if n == 0: return\n    print(n)\n    f(n - 1)\nf(3)",
+    "opts": [
+      "3、2、1",
+      "1、2、3",
+      "3",
+      "一直打印停不下来"
+    ],
+    "ans": 0,
+    "doc": "每次 n 减 1，减到 0 就停"
+  },
+  {
+    "m": "L19",
+    "kind": "blank",
+    "tag": "参数与默认值",
+    "q": "要让打招呼的话默认为 你好，横线处应填？\ndef greet(name, greeting=____):\n    print(greeting + \", \" + name)",
+    "opts": [
+      "name",
+      "\"你好\"",
+      "greeting",
+      "print"
+    ],
+    "ans": 1,
+    "doc": "默认值直接写在参数后面"
+  },
+  {
+    "m": "L19",
+    "kind": "blank",
+    "tag": "lambda",
+    "q": "要按单词长度排序，横线处应填？\nwords = [\"bb\", \"a\", \"ccc\"]\nwords.sort(key=____)",
+    "opts": [
+      "str",
+      "x",
+      "length",
+      "len"
+    ],
+    "ans": 3,
+    "doc": "key=len 表示按长度排"
+  },
+  {
+    "m": "L19",
+    "kind": "bug",
+    "tag": "参数与默认值",
+    "q": "下面的代码第二次调用想得到 [2]，实际却是 [1, 2]，问题出在哪？\ndef add(x, lst=[]):\n    lst.append(x)\n    return lst\nprint(add(1))\nprint(add(2))",
+    "opts": [
+      "append 要写成 add",
+      "默认列表只创建一次，两次调用共享同一个列表",
+      "print 不能连续写",
+      "变量名 lst 重复了"
+    ],
+    "ans": 1,
+    "doc": "可变默认值要写成 lst=None 再在函数里建"
+  },
+  {
+    "m": "L19",
+    "kind": "bug",
+    "tag": "递归",
+    "q": "下面的递归函数运行到一半报错 RecursionError，问题出在哪？\ndef f(n):\n    print(n)\n    f(n - 1)\nf(3)",
+    "opts": [
+      "没有终止条件，会一直递归下去直到超限",
+      "print 的位置不对",
+      "n - 1 要写成 n--",
+      "递归函数里不能打印"
+    ],
+    "ans": 0,
+    "doc": "递归必须有一个能停下来的出口"
+  },
+  {
+    "m": "L19",
+    "kind": "pick",
+    "tag": "高阶函数",
+    "q": "【选实现】任务：把 [\"1\", \"2\", \"3\"] 变成整数列表 [1, 2, 3] 并输出。哪段代码能做到？",
+    "opts": [
+      "strs = [\"1\", \"2\", \"3\"]\nnums = map(int, strs)\nprint(nums)",
+      "strs = [\"1\", \"2\", \"3\"]\nprint(int(strs))",
+      "strs = [\"1\", \"2\", \"3\"]\nnums = list(map(int, strs))\nprint(nums)",
+      "strs = [\"1\", \"2\", \"3\"]\nnums = list(map(str, strs))\nprint(nums)"
+    ],
+    "ans": 2,
+    "doc": "map 返回惰性迭代器，要套 list()"
+  },
+  {
+    "m": "L19",
+    "kind": "concept",
+    "tag": "lambda",
+    "q": "关于 lambda 匿名函数，下面哪个说法正确？",
+    "opts": [
+      "lambda 里可以写多行代码",
+      "lambda 必须写 return",
+      "lambda 就是普通函数换个名字",
+      "lambda 只能写一个表达式"
+    ],
+    "ans": 3,
+    "doc": "适合 sort 的 key 这种小场景"
+  },
+  {
+    "m": "L20",
+    "kind": "read",
+    "tag": "类与实例",
+    "q": "运行这段代码，屏幕显示什么？\nclass Dog:\n    def __init__(self, name):\n        self.name = name\nd = Dog(\"旺财\")\nprint(d.name)",
+    "opts": [
+      "旺财",
+      "name",
+      "Dog",
+      "报错"
+    ],
+    "ans": 0,
+    "doc": "__init__ 把名字存到实例上"
+  },
+  {
+    "m": "L20",
+    "kind": "read",
+    "tag": "继承",
+    "q": "运行这段代码，屏幕显示什么？\nclass Animal:\n    def speak(self):\n        return \"叫\"\nclass Dog(Animal):\n    pass\nprint(Dog().speak())",
+    "opts": [
+      "报错",
+      "叫",
+      "None",
+      "pass"
+    ],
+    "ans": 1,
+    "doc": "子类自动继承父类的方法"
+  },
+  {
+    "m": "L20",
+    "kind": "blank",
+    "tag": "构造方法",
+    "q": "要让 Dog(\"旺财\") 创建对象时自动存名字，横线处应填？\nclass Dog:\n    def ____(self, name):\n        self.name = name",
+    "opts": [
+      "init",
+      "new",
+      "create",
+      "__init__"
+    ],
+    "ans": 3,
+    "doc": "构造方法名固定为 __init__"
+  },
+  {
+    "m": "L20",
+    "kind": "blank",
+    "tag": "继承",
+    "q": "要让 Cat 继承 Animal 的方法，横线处应填？\nclass Cat(____):\n    pass",
+    "opts": [
+      "cat",
+      "self",
+      "Animal",
+      "object"
+    ],
+    "ans": 2,
+    "doc": "括号里写父类名"
+  },
+  {
+    "m": "L20",
+    "kind": "bug",
+    "tag": "构造方法",
+    "q": "下面的代码创建 Dog 时报错，问题出在哪？\nclass Dog:\n    def __init__(name):\n        self.name = name",
+    "opts": [
+      "__init__ 的第一个参数必须是 self",
+      "name 不能用两次",
+      "类里不能写赋值",
+      "Dog 这个名字不合法"
+    ],
+    "ans": 0,
+    "doc": "self 代表刚创建出来的对象自己"
+  },
+  {
+    "m": "L20",
+    "kind": "bug",
+    "tag": "类与实例",
+    "q": "下面的代码想打印狗的名字，运行时却报 NameError，问题出在哪？\nclass Dog:\n    def __init__(self, name):\n        self.name = name\nd = Dog(\"旺财\")\nprint(name)",
+    "opts": [
+      "print 缩进错了",
+      "Dog 不能接收参数",
+      "name 只存在于函数里，要写成 d.name",
+      "__init__ 拼写错误"
+    ],
+    "ans": 2,
+    "doc": "名字存在实例上，用 d.name 取"
+  },
+  {
+    "m": "L20",
+    "kind": "pick",
+    "tag": "类与实例",
+    "q": "【选实现】任务：定义 Dog 类，创建一只叫 旺财 的狗并打印它的名字。哪段代码能做到？",
+    "opts": [
+      "class Dog:\n    def __init__(self, name): name = name\nprint(Dog(\"旺财\").name)",
+      "class Dog:\n    def __init__(self, name): self.name = name\nprint(Dog(\"旺财\").name)",
+      "class Dog:\n    def __init__(self, name): self.name = name\nprint(Dog.name)",
+      "class Dog:\n    def __init__(name): self.name = name\nprint(Dog(\"旺财\").name)"
+    ],
+    "ans": 1,
+    "doc": "self.name 存到实例上，再通过实例取"
+  },
+  {
+    "m": "L20",
+    "kind": "concept",
+    "tag": "继承",
+    "q": "关于继承，下面哪个说法正确？",
+    "opts": [
+      "子类必须把父类的方法全部重写一遍",
+      "继承就是把代码复制粘贴一份",
+      "子类不能用父类的方法",
+      "子类自动拥有父类的方法，还能加自己的"
+    ],
+    "ans": 3,
+    "doc": "继承用来复用和扩展"
+  }
+]

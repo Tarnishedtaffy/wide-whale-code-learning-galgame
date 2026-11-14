@@ -1,0 +1,1190 @@
+/* ==========================================================================
+   UX & Frontend Standards Polish + AI Study Loop Linkage + Rich Text Styles
+   Preserves the original Galgame hand-drawn pink/cream/brown visual identity
+   while fixing contrast, hit targets, pure graphic back icons, and MD/HTML rendering.
+   ========================================================================== */
+
+/* Allow copying text from all AI tutor panels, explanations & chat bubbles */
+.eval-ideas-box,
+.eval-exp,
+.res-ai-body,
+.transfer-panel,
+#chat .msg .bub,
+#histDrawer .mem-msg .mm-b {
+  user-select: text;
+  -webkit-user-select: text;
+}
+
+/* ---------- 1. ChatPage Pure Graphic High-Contrast Icon Buttons ---------- */
+#chat #chatBack.chat-icon-btn,
+#chat #chatCallBtn.chat-icon-btn,
+#chat #chatAiCfgBtn.chat-icon-btn {
+  position: absolute;
+  top: calc(12px + var(--safe-top, 0px));
+  z-index: 12;
+  width: 38px;
+  height: 38px;
+  min-width: 38px;
+  min-height: 38px;
+  padding: 0;
+  border-radius: 50%;
+  background: rgba(253, 246, 248, 0.95);
+  border: 2px solid var(--brown);
+  color: var(--brown);
+  box-shadow:
+    0 4px 14px rgba(8, 6, 16, 0.4),
+    2px 2px 0 rgba(74, 53, 72, 0.28);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition:
+    transform 0.12s ease,
+    background 0.15s ease,
+    box-shadow 0.12s ease;
+}
+
+#chat #chatBack.chat-icon-btn {
+  left: 12px;
+}
+
+#chat #chatCallBtn.chat-icon-btn {
+  right: 58px;
+}
+
+#chat #chatAiCfgBtn.chat-icon-btn {
+  right: 12px;
+}
+
+#chat #chatBack.chat-icon-btn svg {
+  width: 20px;
+  height: 20px;
+  display: block;
+  margin-left: -1px;
+}
+
+#chat #chatCallBtn.chat-icon-btn svg,
+#chat #chatAiCfgBtn.chat-icon-btn svg {
+  width: 18px;
+  height: 18px;
+  display: block;
+}
+
+#chat #chatBack.chat-icon-btn:active,
+#chat #chatCallBtn.chat-icon-btn:active,
+#chat #chatAiCfgBtn.chat-icon-btn:active {
+  transform: translate(1px, 1px) scale(0.96);
+  background: #f9dce4;
+  box-shadow: 0 2px 6px rgba(8, 6, 16, 0.3);
+}
+
+/* Home & Drawer Independent Voice Call Entry + VoiceCall Graphic Back */
+#home .home-head .home-call-entry {
+  margin-left: auto;
+  margin-top: 10px;
+  width: 40px;
+  height: 40px;
+  min-width: 40px;
+  min-height: 40px;
+  padding: 0;
+  border-radius: 50%;
+  background: rgba(255, 250, 252, 0.9);
+  border: 2px solid var(--brown);
+  color: var(--brown);
+  box-shadow:
+    0 4px 12px rgba(120, 75, 100, 0.2),
+    2px 2px 0 rgba(74, 53, 72, 0.2);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  transition: transform 0.12s ease, background 0.15s ease;
+}
+
+#home .home-head .home-call-entry svg {
+  width: 19px;
+  height: 19px;
+  display: block;
+}
+
+#home .home-head .home-call-entry:active {
+  transform: translate(1px, 1px) scale(0.95);
+  background: #f9dce4;
+}
+
+#drawer .d-item .d-call-ico {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#drawer .d-item .d-call-ico svg {
+  width: 30px;
+  height: 30px;
+  display: block;
+}
+
+#voiceCall .vc-top #vcBack.vc-icon-back {
+  width: 34px;
+  height: 34px;
+  min-width: 34px;
+  min-height: 34px;
+  padding: 0;
+  margin-right: 8px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.32);
+  background: rgba(20, 22, 30, 0.42);
+  color: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#voiceCall .vc-top #vcBack.vc-icon-back svg {
+  width: 19px;
+  height: 19px;
+  display: block;
+  margin-left: -1px;
+}
+
+/* Independent Chat AI Config Modal (#aiCfgModal) */
+#aiCfgModal.ai-cfg-modal {
+  position: absolute;
+  inset: 0;
+  z-index: 140;
+  background: rgba(22, 16, 26, 0.56);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+
+#aiCfgModal.ai-cfg-modal.show {
+  display: flex;
+}
+
+.ai-cfg-box {
+  width: 100%;
+  max-width: 346px;
+  max-height: 84%;
+  display: flex;
+  flex-direction: column;
+  background: #fdf6f8;
+  border: 3px solid var(--brown);
+  border-radius: 18px;
+  box-shadow:
+    0 16px 38px rgba(15, 10, 20, 0.4),
+    5px 5px 0 rgba(74, 53, 72, 0.26);
+  overflow: hidden;
+}
+
+.ai-cfg-head {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 11px 14px;
+  background: var(--pink);
+  border-bottom: 2.5px solid var(--brown);
+}
+
+.ai-cfg-title {
+  font-size: calc(13px * var(--fs, 1));
+  font-weight: 800;
+  color: var(--brown);
+  letter-spacing: 1px;
+}
+
+.ai-cfg-close {
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border-radius: 50%;
+  border: 1.5px solid var(--brown);
+  background: rgba(255, 255, 255, 0.85);
+  color: var(--brown);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.ai-cfg-close svg {
+  width: 15px;
+  height: 15px;
+  display: block;
+}
+
+.ai-cfg-body {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.ai-cfg-switch-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: calc(11.5px * var(--fs, 1));
+  font-weight: 700;
+  color: var(--brown);
+  cursor: pointer;
+}
+
+.ai-cfg-switch-row input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  accent-color: #d4688f;
+  flex: 0 0 auto;
+}
+
+.ai-cfg-field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.ai-cfg-field label {
+  font-size: calc(11px * var(--fs, 1));
+  font-weight: 700;
+  color: #6b4e60;
+}
+
+.ai-cfg-field input[type="text"],
+.ai-cfg-field input[type="password"],
+.ai-cfg-field textarea {
+  width: 100%;
+  padding: 7px 10px;
+  border-radius: 10px;
+  border: 1.5px solid rgba(74, 53, 72, 0.28);
+  background: #fff;
+  color: var(--brown);
+  font-family: inherit;
+  font-size: calc(12px * var(--fs, 1));
+  line-height: 1.5;
+  outline: none;
+}
+
+.ai-cfg-field textarea {
+  resize: vertical;
+  min-height: 64px;
+}
+
+.ai-cfg-field input[type="range"] {
+  width: 100%;
+  accent-color: #d4688f;
+}
+
+.ai-cfg-grid2 {
+  display: flex;
+  gap: 9px;
+}
+
+.ai-cfg-grid2 > * {
+  flex: 1;
+  min-width: 0;
+}
+
+.ai-cfg-foot {
+  flex: 0 0 auto;
+  padding: 10px 14px 12px;
+  border-top: 1.5px dashed rgba(74, 53, 72, 0.2);
+  background: rgba(249, 220, 228, 0.35);
+}
+
+.ai-cfg-btns {
+  display: flex;
+  gap: 7px;
+}
+
+.ai-cfg-btns button {
+  flex: 1;
+  padding: 8px 8px;
+  border-radius: 10px;
+  border: 1.5px solid var(--brown);
+  background: #fff;
+  color: var(--brown);
+  font-family: inherit;
+  font-size: calc(11.5px * var(--fs, 1));
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.ai-cfg-btns button.primary {
+  background: linear-gradient(180deg, #f39ec0, #d4688f);
+  border-color: var(--brown);
+  color: #fff;
+}
+
+.ai-cfg-btns button:disabled {
+  opacity: 0.65;
+  cursor: wait;
+}
+
+.ai-cfg-msg {
+  margin-top: 7px;
+  font-size: calc(11px * var(--fs, 1));
+  line-height: 1.5;
+  color: #267347;
+  word-break: break-word;
+}
+
+.ai-cfg-msg.err {
+  color: #b83a54;
+}
+
+#chat .body {
+  padding-top: calc(58px + var(--safe-top, 0px));
+}
+
+#chat .inbar .field {
+  height: 38px;
+  border-radius: 999px;
+  padding: 0 14px;
+  background: rgba(255, 251, 253, 0.86);
+  border: 1.5px solid rgba(74, 53, 72, 0.25);
+}
+
+#chat .inbar .send {
+  border-radius: 999px;
+  box-shadow: 0 3px 10px rgba(212, 116, 138, 0.34);
+  transition: transform 0.12s ease, filter 0.15s ease;
+}
+
+#chat .inbar .send:active {
+  transform: scale(0.95);
+}
+
+#chat .msg .bub {
+  background: rgba(253, 247, 250, 0.95);
+  border: 1px solid rgba(74, 53, 72, 0.12);
+}
+
+#chat .msg.me .bub {
+  background: linear-gradient(135deg, #e588a6, #d46b8e);
+  color: #fff;
+  border-color: transparent;
+}
+
+/* ---------- 1b. Safe Markdown & Simple HTML Rich-Text Styles (.rt-content) ---------- */
+.rt-content {
+  white-space: normal !important;
+  word-break: break-word;
+  overflow-wrap: anywhere;
+}
+
+.rt-content .rt-p {
+  margin: 0;
+  line-height: 1.68;
+}
+
+.rt-content .rt-p + .rt-p {
+  margin-top: 3px;
+}
+
+.rt-content .rt-gap {
+  height: 6px;
+}
+
+.rt-content .rt-h {
+  font-weight: 800;
+  font-size: 1.04em;
+  color: #3d273a;
+  margin: 6px 0 3px;
+  line-height: 1.45;
+}
+
+.rt-content .rt-h:first-child {
+  margin-top: 0;
+}
+
+.rt-content strong,
+.rt-content b {
+  font-weight: 800;
+  color: #3b2236;
+}
+
+.rt-content mark {
+  background: rgba(255, 217, 112, 0.55);
+  color: inherit;
+  padding: 0 3px;
+  border-radius: 4px;
+}
+
+.rt-content .rt-ul,
+.rt-content .rt-ol {
+  margin: 4px 0 5px;
+  padding-left: 18px;
+}
+
+.rt-content li {
+  margin: 2px 0;
+  line-height: 1.64;
+}
+
+.rt-content .rt-quote {
+  margin: 5px 0;
+  padding: 5px 10px;
+  border-left: 3px solid #d4688f;
+  background: rgba(212, 104, 143, 0.08);
+  border-radius: 0 8px 8px 0;
+  color: #5d4354;
+  line-height: 1.62;
+}
+
+.rt-content .rt-code,
+.rt-content :not(pre) > code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+  font-size: 0.9em;
+  padding: 1.5px 5px;
+  margin: 0 1px;
+  border-radius: 5px;
+  background: rgba(74, 53, 72, 0.09);
+  border: 1px solid rgba(74, 53, 72, 0.11);
+  color: #9b2f5a;
+}
+
+.rt-content pre.rt-pre {
+  position: relative;
+  margin: 6px 0;
+  padding: 9px 11px;
+  border-radius: 10px;
+  background: #28202e;
+  color: #f9eef4;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+  font-size: calc(11.5px * var(--fs, 1));
+  line-height: 1.56;
+  white-space: pre-wrap;
+  word-break: break-word;
+  overflow-x: auto;
+}
+
+.rt-content pre.rt-pre code {
+  background: transparent;
+  border: none;
+  padding: 0;
+  margin: 0;
+  color: inherit;
+  font-size: inherit;
+  font-family: inherit;
+}
+
+.rt-content .rt-lang {
+  float: right;
+  margin: -3px -2px 4px 8px;
+  padding: 1px 5px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.1);
+  font-size: 9.5px;
+  font-weight: 700;
+  color: #f0bfd3;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+}
+
+.rt-content .rt-hr {
+  border: none;
+  border-top: 1px dashed rgba(74, 53, 72, 0.24);
+  margin: 7px 0;
+}
+
+.rt-content .rt-link {
+  color: #b84270;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  word-break: break-all;
+}
+
+/* Contrast adaptation inside user's pink bubble (.msg.me .bub) */
+#chat .msg.me .bub .rt-h,
+#chat .msg.me .bub strong,
+#chat .msg.me .bub b {
+  color: #fff;
+}
+
+#chat .msg.me .bub .rt-code,
+#chat .msg.me .bub :not(pre) > code {
+  background: rgba(255, 255, 255, 0.22);
+  border-color: rgba(255, 255, 255, 0.32);
+  color: #fff;
+}
+
+#chat .msg.me .bub .rt-quote {
+  border-left-color: rgba(255, 255, 255, 0.85);
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+}
+
+#chat .msg.me .bub .rt-link {
+  color: #fff;
+}
+
+/* ---------- 2. LevelMapPage Touch & Graphic Back Icon ---------- */
+#levels .sakura-stage {
+  touch-action: none;
+  cursor: grab;
+}
+
+#levels .sakura-stage.grabbing {
+  cursor: grabbing;
+}
+
+#levels #levelsBack.lv-back {
+  width: 38px;
+  height: 38px;
+  min-width: 38px;
+  min-height: 38px;
+  padding: 0;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#levels #levelsBack.lv-back svg {
+  width: 20px;
+  height: 20px;
+  display: block;
+  margin-left: -1px;
+}
+
+#levels .lv-chip {
+  min-height: 34px;
+  padding: 0 14px;
+}
+
+/* ---------- 3. QuizPage Graphic Back Button, Progress Bar & AI Multi-Idea Card ---------- */
+#quiz .top {
+  height: 54px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+#quiz .top #quizBack.quiz-icon-back {
+  width: 38px;
+  height: 38px;
+  min-width: 38px;
+  min-height: 38px;
+  padding: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.88);
+  border: 1.5px solid rgba(125, 92, 114, 0.28);
+  color: #6d4a61;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 3px 10px rgba(190, 120, 160, 0.16);
+  transition: transform 0.12s ease, background 0.15s ease;
+}
+
+#quiz .top #quizBack.quiz-icon-back svg {
+  width: 20px;
+  height: 20px;
+  display: block;
+  margin-left: -1px;
+}
+
+#quiz .top #quizBack.quiz-icon-back:active {
+  transform: scale(0.95);
+  background: #fdeef5;
+}
+
+#quiz .top .progressbar {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  flex: 1;
+}
+
+#quiz .quiz-prog-track {
+  width: 78px;
+  height: 7px;
+  border-radius: 999px;
+  background: rgba(192, 96, 139, 0.16);
+  overflow: hidden;
+  flex: 0 0 auto;
+}
+
+#quiz .quiz-prog-fill {
+  display: block;
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #f39ec0, #d4688f);
+  transition: width 0.28s ease;
+}
+
+#quiz .girlzone {
+  height: clamp(142px, 20vh, 206px);
+}
+
+#quiz .opt {
+  text-align: left;
+  padding: 12px 16px;
+  margin-bottom: 10px;
+  border: 1.5px solid rgba(190, 140, 165, 0.22);
+  transition:
+    transform 0.12s ease,
+    background 0.15s ease,
+    box-shadow 0.15s ease,
+    border-color 0.15s ease;
+}
+
+#quiz .opt:disabled {
+  cursor: default;
+  opacity: 0.96;
+}
+
+#quiz .opt.sel {
+  background: #fde2ee;
+  border-color: #e58eb2;
+  box-shadow: inset 0 0 0 1.5px #e58eb2, 0 5px 14px rgba(190, 120, 150, 0.16);
+}
+
+#quiz .opt.is-right {
+  background: #eafaf1 !important;
+  color: #1f6b47 !important;
+  border-color: #3ca370 !important;
+  box-shadow: inset 0 0 0 1.5px #3ca370, 0 4px 12px rgba(60, 163, 112, 0.14) !important;
+}
+
+#quiz .opt.is-wrong {
+  background: #fff0f4 !important;
+  color: #a63a58 !important;
+  border-color: #df6d8a !important;
+  box-shadow: inset 0 0 0 1.5px #df6d8a !important;
+}
+
+#quiz .sj-btn.active {
+  box-shadow: 0 0 0 2px #ffd86b;
+  transform: scale(1.03);
+}
+
+.quiz-eval-card {
+  margin: 4px 0 12px;
+  padding: 13px 14px;
+  border-radius: 20px;
+  background: #fff8fb;
+  border: 1.5px solid rgba(212, 116, 138, 0.34);
+  box-shadow: 0 6px 18px rgba(185, 118, 152, 0.12);
+}
+
+.quiz-eval-card.ok {
+  background: #f4fcf7;
+  border-color: rgba(60, 163, 112, 0.38);
+}
+
+.quiz-eval-card .eval-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 7px;
+}
+
+.quiz-eval-card .eval-badge {
+  font-size: calc(12px * var(--fs, 1));
+  font-weight: 800;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: #fde2ea;
+  color: #a53c59;
+}
+
+.quiz-eval-card.ok .eval-badge {
+  background: #dff5e8;
+  color: #216e49;
+}
+
+.quiz-eval-card .eval-tag {
+  font-size: calc(10.5px * var(--fs, 1));
+  color: #8a6c7b;
+  font-weight: 700;
+}
+
+.quiz-eval-card .eval-ans {
+  font-size: calc(12px * var(--fs, 1));
+  color: #4a3548;
+  line-height: 1.55;
+  margin-bottom: 5px;
+}
+
+.quiz-eval-card .eval-ans b {
+  color: #216e49;
+}
+
+.quiz-eval-card .eval-exp {
+  font-size: calc(11.5px * var(--fs, 1));
+  color: #654f5d;
+  line-height: 1.65;
+  padding-top: 5px;
+  border-top: 1px dashed rgba(140, 105, 125, 0.24);
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.quiz-eval-card .eval-acts {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+
+.eval-ai-btn,
+.eval-chat-btn {
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-family: inherit;
+  font-size: calc(11.5px * var(--fs, 1));
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.12s ease, filter 0.15s ease;
+}
+
+.eval-ai-btn {
+  border: 1.5px solid #d982a6;
+  background: linear-gradient(180deg, #fff2f8, #fbdbe8);
+  color: #8d375b;
+}
+
+.eval-ai-btn:disabled {
+  opacity: 0.72;
+  cursor: wait;
+}
+
+.eval-chat-btn {
+  border: 1.5px solid #c9b5dc;
+  background: #f6effb;
+  color: #5e4273;
+}
+
+.eval-ai-btn:active,
+.eval-chat-btn:active {
+  transform: translateY(1px);
+}
+
+.eval-ideas-box {
+  margin-top: 10px;
+  padding: 10px 12px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(212, 116, 138, 0.28);
+}
+
+.eval-ideas-box .ideas-title {
+  font-size: calc(11px * var(--fs, 1));
+  font-weight: 800;
+  color: #b04b74;
+  margin-bottom: 5px;
+}
+
+.eval-ideas-box .ideas-body {
+  font-size: calc(11.5px * var(--fs, 1));
+  line-height: 1.68;
+  color: #4a3548;
+  word-break: break-word;
+}
+
+#quiz .nextbtn.is-next {
+  background: linear-gradient(180deg, #e588ac, #cf5f8a);
+  color: #fff;
+  box-shadow: 0 7px 18px rgba(200, 100, 140, 0.28);
+}
+
+/* ---------- 4. CardsFlipPage Typography & Ask Lune Button ---------- */
+#cards .bar-x,
+#cards .bar-menu {
+  min-width: 38px;
+  min-height: 38px;
+  border-radius: 10px;
+}
+
+#cards .fc .q {
+  font-size: calc(clamp(16px, 4.3vw, 20px) * var(--fs, 1));
+  line-height: 1.55;
+}
+
+#cards .fc .q code {
+  font-size: calc(clamp(14.5px, 3.9vw, 18px) * var(--fs, 1));
+}
+
+#cards .fc .a {
+  font-size: calc(clamp(15.5px, 4.1vw, 19px) * var(--fs, 1));
+  line-height: 1.62;
+  flex: 1;
+}
+
+#cards .fc .a code {
+  font-size: calc(clamp(14px, 3.8vw, 17px) * var(--fs, 1));
+}
+
+#cards .fc .card-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: auto;
+  padding-top: 10px;
+}
+
+#cards .fc .card-ask-btn {
+  padding: 5px 12px;
+  border-radius: 999px;
+  border: 1.5px solid rgba(192, 96, 139, 0.42);
+  background: #fdf0f5;
+  color: #963c62;
+  font-family: inherit;
+  font-size: calc(11.5px * var(--fs, 1));
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(176, 96, 132, 0.12);
+  transition: transform 0.12s ease, background 0.15s ease;
+}
+
+#cards .fc .card-ask-btn:active {
+  transform: scale(0.96);
+  background: #f8dce7;
+}
+
+#cards .fc .card-ask-btn.dark {
+  background: rgba(255, 232, 242, 0.16);
+  border-color: rgba(255, 214, 230, 0.45);
+  color: #ffe4ee;
+}
+
+#cards .fc .hint-back {
+  font-size: calc(11.5px * var(--fs, 1));
+  color: rgba(239, 226, 231, 0.7);
+}
+
+/* ---------- 5. ResultPage Pure Graphic Back Button, AI Summary Card & Scroll Layout ---------- */
+#result #resBack.res-icon-back {
+  width: 38px;
+  height: 38px;
+  min-width: 38px;
+  min-height: 38px;
+  padding: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.88);
+  border: 1.5px solid rgba(125, 92, 114, 0.28);
+  color: #6d4a61;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(190, 120, 160, 0.18);
+  transition: transform 0.12s ease, background 0.15s ease;
+}
+
+#result #resBack.res-icon-back svg {
+  width: 20px;
+  height: 20px;
+  display: block;
+  margin-left: -1px;
+}
+
+#result #resBack.res-icon-back:active {
+  transform: scale(0.95);
+  background: #fdeef5;
+}
+
+#result .rerr {
+  flex: 0 0 auto;
+  margin-bottom: 14px;
+}
+
+#result .rerr .items {
+  max-height: 260px;
+}
+
+.res-ai-card {
+  background: rgba(255, 251, 253, 0.94);
+  border: 1.5px solid rgba(255, 255, 255, 0.96);
+  border-radius: 26px;
+  padding: 15px 16px;
+  margin-bottom: 14px;
+  box-shadow: 0 14px 32px rgba(190, 118, 156, 0.15);
+}
+
+.res-ai-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 9px;
+}
+
+.res-ai-title {
+  font-size: calc(13px * var(--fs, 1));
+  font-weight: 800;
+  color: #a84870;
+  letter-spacing: 1px;
+}
+
+.res-ai-acts {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.res-ai-btn {
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid #e2bfd0;
+  background: #fff;
+  color: #7d4e67;
+  font-family: inherit;
+  font-size: calc(10.5px * var(--fs, 1));
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.res-ai-btn.primary {
+  background: #f9dce8;
+  border-color: #df9cb8;
+  color: #8f365a;
+}
+
+.res-ai-btn:disabled {
+  opacity: 0.65;
+  cursor: wait;
+}
+
+.res-ai-body {
+  font-size: calc(12px * var(--fs, 1));
+  line-height: 1.72;
+  color: #4d3847;
+  word-break: break-word;
+}
+
+/* ---------- 6. WrongBookDrawer Per-Question Explain & Transfer Variant Drill ---------- */
+.fav-head button {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.wrong-card .wdoc {
+  margin-top: 5px;
+  padding-top: 5px;
+  border-top: 1px dashed rgba(140, 105, 125, 0.22);
+  font-size: calc(11px * var(--fs, 1));
+  line-height: 1.58;
+  color: #6b5262;
+}
+
+.wbtn.transfer {
+  background: linear-gradient(180deg, #fff3f8, #f8d8e6);
+  border-color: #dc9bb7;
+  color: #8d3559;
+  font-weight: 700;
+}
+
+.wbtn.ask {
+  background: #f4eefb;
+  border-color: #cdb9e3;
+  color: #5c4073;
+  font-weight: 700;
+}
+
+.transfer-panel {
+  margin-top: 10px;
+  padding: 11px 11px 10px;
+  border-radius: 12px;
+  background: #fffafb;
+  border: 2px solid #deb6c8;
+  box-shadow: 0 4px 12px rgba(120, 75, 98, 0.08);
+}
+
+.transfer-panel .tp-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  margin-bottom: 7px;
+}
+
+.transfer-panel .tp-badge {
+  font-size: calc(10.5px * var(--fs, 1));
+  font-weight: 800;
+  color: #9e3d64;
+}
+
+.transfer-panel .tp-close {
+  border: none;
+  background: none;
+  font-family: inherit;
+  font-size: calc(10.5px * var(--fs, 1));
+  color: #8a737d;
+  cursor: pointer;
+  padding: 2px 4px;
+}
+
+.transfer-panel .tp-loading {
+  font-size: calc(11px * var(--fs, 1));
+  color: #8c6476;
+  padding: 10px 4px;
+  line-height: 1.6;
+}
+
+.transfer-panel .tp-q {
+  font-size: calc(11.5px * var(--fs, 1));
+  font-weight: 700;
+  color: var(--brown);
+  line-height: 1.65;
+  margin-bottom: 8px;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.transfer-panel .tp-opts {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.transfer-panel .tp-opt {
+  width: 100%;
+  text-align: left;
+  padding: 7px 9px;
+  border-radius: 8px;
+  border: 1.5px solid #e5d5dc;
+  background: #fff;
+  color: #4d3a46;
+  font-family: inherit;
+  font-size: calc(11px * var(--fs, 1));
+  line-height: 1.5;
+  cursor: pointer;
+  transition: background 0.14s ease, border-color 0.14s ease;
+}
+
+.transfer-panel .tp-opt:disabled {
+  cursor: default;
+}
+
+.transfer-panel .tp-opt.is-right {
+  background: #eafaf1;
+  border-color: #369c69;
+  color: #1d6944;
+  font-weight: 700;
+}
+
+.transfer-panel .tp-opt.is-wrong {
+  background: #fff0f4;
+  border-color: #dc6d89;
+  color: #a33a57;
+}
+
+.transfer-panel .tp-feedback {
+  margin-top: 8px;
+  padding: 8px 9px;
+  border-radius: 8px;
+  background: #fdf2f6;
+  border-left: 3px solid #d4688f;
+  font-size: calc(10.5px * var(--fs, 1));
+  line-height: 1.62;
+  color: #4d3a46;
+}
+
+.transfer-panel .tp-feedback.ok {
+  background: #effaf3;
+  border-left-color: #369c69;
+}
+
+.transfer-panel .tp-verdict {
+  font-weight: 800;
+  margin-bottom: 3px;
+  color: #9e3b5c;
+}
+
+.transfer-panel .tp-feedback.ok .tp-verdict {
+  color: #1f6d47;
+}
+
+.transfer-panel .tp-tip {
+  margin-top: 3px;
+  color: #7c5669;
+  font-weight: 600;
+}
+
+.transfer-panel .tp-foot {
+  margin-top: 7px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.transfer-panel .tp-next {
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid #d9b6c7;
+  background: #fff;
+  color: #8a3a5b;
+  font-family: inherit;
+  font-size: calc(10.5px * var(--fs, 1));
+  font-weight: 700;
+  cursor: pointer;
+}
+
+/* ---------- 7. Desktop Hover & Focus-Visible Accessibility Polish ---------- */
+@media (hover: hover) {
+  #chat #chatBack.chat-icon-btn:hover,
+  #chat #chatCallBtn.chat-icon-btn:hover,
+  #chat #chatAiCfgBtn.chat-icon-btn:hover,
+  #home .home-head .home-call-entry:hover,
+  #quiz .top #quizBack.quiz-icon-back:hover,
+  #result #resBack.res-icon-back:hover {
+    background: #fff;
+    transform: translateY(-1px);
+  }
+  #quiz .opt:not(:disabled):hover {
+    background: #fff6fa;
+    border-color: #e4aec5;
+  }
+  #cards .fc .card-ask-btn:hover {
+    filter: brightness(0.98);
+    transform: translateY(-1px);
+  }
+  .eval-ai-btn:not(:disabled):hover,
+  .eval-chat-btn:hover,
+  .res-ai-btn:not(:disabled):hover,
+  .transfer-panel .tp-opt:not(:disabled):hover {
+    filter: brightness(0.98);
+  }
+}
+
+#chat #chatBack:focus-visible,
+#chat #chatCallBtn:focus-visible,
+#chat #chatAiCfgBtn:focus-visible,
+#home #homeCallBtn:focus-visible,
+#quiz #quizBack:focus-visible,
+#result #resBack:focus-visible,
+#levels #levelsBack:focus-visible,
+#quiz .opt:focus-visible,
+#quiz .nextbtn:focus-visible,
+#cards .card-ask-btn:focus-visible,
+.eval-ai-btn:focus-visible,
+.eval-chat-btn:focus-visible,
+.res-ai-btn:focus-visible,
+.wbtn:focus-visible,
+.tp-opt:focus-visible {
+  outline: 2px solid #d4688f;
+  outline-offset: 2px;
+}

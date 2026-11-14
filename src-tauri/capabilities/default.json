@@ -1,0 +1,9 @@
+{
+  "$schema": "../gen/schemas/desktop-schema.json",
+  "identifier": "default",
+  "description": "Default capabilities for Mnk Study Loop across desktop and mobile",
+  "windows": ["main"],
+  "permissions": [
+    "core:default"
+  ]
+}

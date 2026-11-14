@@ -1,0 +1,150 @@
+/* Mobile & Multi-Platform Safe-Area & Viewport Overrides for Tauri v2 */
+:root {
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --safe-left: env(safe-area-inset-left, 0px);
+  --safe-right: env(safe-area-inset-right, 0px);
+}
+
+html,
+body {
+  overscroll-behavior: none;
+  -webkit-text-size-adjust: 100%;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+#app {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Allow copy/selection inside code blocks, chat bubbles, and card answers */
+pre,
+code,
+input,
+textarea,
+#chat .bub,
+.fc .sd.back .a,
+.err-item {
+  user-select: text;
+  -webkit-user-select: text;
+}
+
+/* Expand full-bleed mobile layout beyond legacy 430px cap to cover all phones & touch WebViews */
+@media (max-width: 768px), (hover: none) and (pointer: coarse) {
+  body {
+    background: var(--bg);
+    align-items: stretch;
+    justify-content: center;
+  }
+
+  #app {
+    align-items: stretch;
+  }
+
+  .phone {
+    width: 100vw;
+    height: 100vh;
+    height: 100dvh;
+    max-height: 100vh;
+    max-height: 100dvh;
+    box-shadow: none;
+  }
+
+  /* Respect notch / punch-hole camera on top headers */
+  .home-head {
+    padding-top: calc(14px + var(--safe-top));
+  }
+  .lv-topbar {
+    top: calc(10px + var(--safe-top));
+  }
+  .lv-title {
+    top: calc(54px + var(--safe-top));
+  }
+  #quiz .top,
+  #cardsMenu .cm-top,
+  #cards .bar,
+  #settings .set-top,
+  #gallery .gal-top,
+  #voiceCall .vc-top,
+  .ml-top,
+  .msp-top,
+  .hist-drawer .mem-top,
+  .fav-head {
+    padding-top: calc(12px + var(--safe-top));
+  }
+  #chat .closex {
+    top: calc(12px + var(--safe-top));
+  }
+  #chat .body {
+    padding-top: calc(52px + var(--safe-top));
+  }
+  #result .res-back {
+    top: calc(12px + var(--safe-top));
+  }
+  #result .rwrap {
+    padding-top: calc(48px + var(--safe-top));
+  }
+
+  /* Respect bottom gesture indicator bar */
+  .home-actions {
+    padding-bottom: calc(16px + var(--safe-bottom));
+  }
+  .lv-bottom {
+    bottom: calc(16px + var(--safe-bottom));
+  }
+  #chat .tabbar {
+    padding-bottom: calc(10px + var(--safe-bottom));
+  }
+  #voiceCall .vc-actions {
+    padding-bottom: calc(28px + var(--safe-bottom));
+  }
+  .ml-bar {
+    padding-bottom: calc(10px + var(--safe-bottom));
+  }
+  .intro-skip {
+    bottom: calc(22px + var(--safe-bottom));
+  }
+}
+
+/* AI Proxy Config extension inside SettingsPage matching legacy hand-drawn style */
+.set-input-url {
+  width: 100%;
+  margin-top: 6px;
+  padding: 7px 10px;
+  border: 1.5px solid var(--brown);
+  border-radius: 8px;
+  background: #fff;
+  color: var(--brown);
+  font-size: 12px;
+  font-family: Consolas, "Courier New", monospace;
+  outline: none;
+}
+.set-input-url:focus {
+  border-color: var(--pink-dd);
+  box-shadow: 0 0 0 2px rgba(212, 116, 138, 0.18);
+}
+.set-seg {
+  display: inline-flex;
+  border: 1.5px solid var(--brown);
+  border-radius: 999px;
+  overflow: hidden;
+  background: var(--cream);
+}
+.set-seg button {
+  border: none;
+  background: transparent;
+  padding: 4px 12px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--brown);
+  cursor: pointer;
+}
+.set-seg button.on {
+  background: var(--pink-d);
+  color: #fff;
+}

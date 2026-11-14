@@ -1,0 +1,51 @@
+{
+  "Version": 3,
+  "FileReferences": {
+    "Moc": "model.moc3",
+    "Textures": [
+      "texture_00.png"
+    ],
+    "Physics": "model.physics3.json",
+    "DisplayInfo": "model.cdi3.json",
+    "Motions": {
+      "Idle": [
+        {
+          "File": "motions/idle.motion3.json",
+          "FadeInTime": 0.5,
+          "FadeOutTime": 0.5
+        }
+      ],
+      "Tap": [
+        {
+          "File": "motions/tap.motion3.json",
+          "FadeInTime": 0.12,
+          "FadeOutTime": 0.22
+        }
+      ],
+      "Nod": [
+        {
+          "File": "motions/nod.motion3.json",
+          "FadeInTime": 0.3,
+          "FadeOutTime": 0.4
+        }
+      ]
+    }
+  },
+  "Groups": [
+    {
+      "Target": "Parameter",
+      "Name": "LipSync",
+      "Ids": [
+        "ParamMouthOpenY"
+      ]
+    },
+    {
+      "Target": "Parameter",
+      "Name": "EyeBlink",
+      "Ids": [
+        "ParamEyeLOpen",
+        "ParamEyeROpen"
+      ]
+    }
+  ]
+}
